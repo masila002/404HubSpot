@@ -106,7 +106,7 @@ export default {
   name: 'GraphicsDesign',
   components: { GlobalNav, Footer },
   data() {
-    return { whatsappNumber: '254700000000' }
+    return { whatsappNumber: '254708345963' }
   },
   methods: {
     whatsappUrl(text) {

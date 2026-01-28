@@ -17,7 +17,7 @@
         <div>
           <h4 class="font-semibold mb-4">Contact</h4>
           <ul class="space-y-2 text-gray-300">
-            <li><a href="mailto:info@404hubspot.com" class="hover:text-peach transition-colors">info@404hubspot.com</a></li>
+            <li><a href="mailto:hubspot861@gmail.com" class="hover:text-peach transition-colors">hubspot861@gmail.com</a></li>
             <li>
               <a 
                 :href="whatsappUrl('Hello%2C_I%27d_like_to_get_in_touch')"
@@ -42,7 +42,7 @@ export default {
   name: 'Footer',
   data() {
     return {
-      whatsappNumber: '254700000000' // Replace with your actual WhatsApp number
+      whatsappNumber: '254708345963' // Replace with your actual WhatsApp number
     }
   },
   methods: {

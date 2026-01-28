@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      whatsappNumber: '254700000000' // Replace with your actual WhatsApp number
+      whatsappNumber: '254708345963' // Replace with your actual WhatsApp number
     }
   },
   methods: {

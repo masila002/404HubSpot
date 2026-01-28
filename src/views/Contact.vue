@@ -22,8 +22,8 @@
                   </div>
                   <div>
                     <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
-                    <a href="mailto:info@404hubspot.com" class="text-teal hover:text-teal-dark">
-                      info@404hubspot.com
+                    <a href="mailto:hubspot861@gmail.com" class="text-teal hover:text-teal-dark">
+                    hubspot861@gmail.com
                     </a>
                   </div>
                 </div>
@@ -116,7 +116,7 @@
                       'w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent transition-colors',
                       errors.name ? 'border-red-300 bg-red-50' : 'border-gray-300'
                     ]"
-                    placeholder="John Doe"
+                    placeholder="June chemuu"
                     @blur="validateField('name')"
                   />
                   <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
@@ -135,7 +135,7 @@
                       'w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent transition-colors',
                       errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300'
                     ]"
-                    placeholder="john@example.com"
+                    placeholder="june@example.com"
                     @blur="validateField('email')"
                   />
                   <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
@@ -286,7 +286,7 @@ export default {
   },
   data() {
     return {
-      whatsappNumber: '254700000000', // Replace with your actual WhatsApp number
+      whatsappNumber: '254708345963', // Replace with your actual WhatsApp number
       googleMeetUrl: 'https://meet.google.com/your-meeting-link', // Replace with your Google Meet link
       formspreeId: 'YOUR_FORM_ID', // Replace with your Formspree form ID
       submitting: false,
