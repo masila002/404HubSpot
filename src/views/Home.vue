@@ -59,16 +59,19 @@
           >
             Learn More
           </router-link>
-          <a
+          
             :href="whatsappUrl('I%27m_interested_in_M-Pesa_API_integration')"
             target="_blank"
             class="btn-outline border-white text-white hover:bg-white hover:text-teal inline-block"
           >
             Consult on WhatsApp
-          </a>
+          
         </div>
       </div>
     </section>
+
+    <!-- Team Section -->
+    <TeamSection />
 
     <!-- Our Process Section -->
     <section id="process" class="py-20 bg-white">
@@ -137,6 +140,7 @@
 import GlobalNav from "../components/GlobalNav.vue";
 import Footer from "../components/Footer.vue";
 import ServiceCard from "../components/ServiceCard.vue";
+import TeamSection from "./services/Teamsection.vue";
 
 export default {
   name: "Home",
@@ -144,10 +148,11 @@ export default {
     GlobalNav,
     Footer,
     ServiceCard,
+    TeamSection
   },
   data() {
     return {
-      whatsappNumber: "254708345963", // Replace with your actual WhatsApp number
+      whatsappNumber: "254708345963",
       services: [
         {
           id: 1,
