@@ -14,6 +14,7 @@
             <li><router-link to="/contact" class="text-gray-300 hover:text-peach transition-colors">Contact</router-link></li>
           </ul>
         </div>
+        
         <div>
           <h4 class="font-semibold mb-4">Contact</h4>
           <ul class="space-y-2 text-gray-300">
