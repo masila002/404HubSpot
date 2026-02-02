@@ -60,12 +60,12 @@
             Learn More
           </router-link>
           
-            :href="whatsappUrl('I%27m_interested_in_M-Pesa_API_integration')"
+           <a :href="whatsappUrl('I%27m_interested_in_M-Pesa_API_integration')"
             target="_blank"
             class="btn-outline border-white text-white hover:bg-white hover:text-teal inline-block"
           >
             Consult on WhatsApp
-          
+          </a>
         </div>
       </div>
     </section>
@@ -148,7 +148,7 @@ export default {
     GlobalNav,
     Footer,
     ServiceCard,
-    TeamSection
+    TeamSection,
   },
   data() {
     return {
