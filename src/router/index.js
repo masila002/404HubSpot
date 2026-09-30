@@ -37,4 +37,10 @@ const router = createRouter({
   }
 })
 
+router.afterEach(async (to) => {
+  const { applySeo } = await import("../lib/seo");
+  const { team } = await import("../data/site");
+  applySeo(to, team);
+});
+
 export default router

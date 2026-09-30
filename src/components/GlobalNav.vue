@@ -67,8 +67,16 @@
           >Our Process</router-link
         >
         <router-link class="nav-link" to="/contact">Contact</router-link>
-        <router-link v-if="!clerkReady" class="nav-link" to="/sign-in">Sign in</router-link>
-        <router-link v-else class="nav-link" to="/sign-in">Account</router-link>
+        <template v-if="clerkReady">
+          <Show when="signed-out">
+            <router-link class="nav-link" to="/sign-in">Sign in</router-link>
+          </Show>
+          <Show when="signed-in">
+            <UserButton :after-sign-out-url="'/'" />
+          </Show>
+        </template>
+        <router-link v-else class="nav-link" to="/sign-in">Sign in</router-link>
+        <ThemeToggle />
         <a
           class="action action-dark nav-cta"
           :href="
@@ -86,10 +94,12 @@
 </template>
 <script>
 import UiIcon from "./UiIcon.vue";
+import ThemeToggle from "./ThemeToggle.vue";
+import { Show, UserButton } from "@clerk/vue";
 import { services, whatsappUrl } from "../data/site";
 export default {
   name: "GlobalNav",
-  components: { UiIcon },
+  components: { UiIcon, ThemeToggle, Show, UserButton },
   computed: {
     clerkReady() {
       return Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);

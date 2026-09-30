@@ -59,7 +59,7 @@ import LanguageCard from "../components/LanguageCard.vue";
 import UiIcon from "../components/UiIcon.vue";
 import { pricing, whatsappUrl } from "../data/site";
 import { useReveal } from "../composables/useReveal";
-import spark from "../../public/lottie/spark.json";
+import spark from "../assets/lottie/spark.json";
 
 export default {
   name: "ProgrammingClasses",
