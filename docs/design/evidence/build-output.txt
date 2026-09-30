@@ -1,0 +1,18 @@
+npm notice run 404hubspot@1.0.0 build
+npm notice run vite build
+vite v7.3.1 building client environment for production...
+transforming...
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+(node:593418) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/artkins/Programming/Web/404HubSpot/postcss.config.js?t=1790777493360 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/artkins/Programming/Web/404HubSpot/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ 48 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   1.03 kB │ gzip:  0.52 kB
+dist/assets/index-CaFWFi40.css   41.69 kB │ gzip:  8.94 kB
+dist/assets/index--8yTvyPw.js   187.77 kB │ gzip: 54.28 kB
+✓ built in 1.64s
