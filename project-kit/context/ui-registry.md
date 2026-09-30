@@ -13,11 +13,12 @@
 | Pricing | src/data/site.js pricing + price-card styles; service views | Provisional KES bands (owner-review); featured dark card; WhatsApp CTA |
 | Reveal | src/composables/useReveal.js (gsap 3.15 + ScrollTrigger) | data-reveal/data-hero entrances; matchMedia + reduced-motion; ctx.revert cleanup |
 | LottiePlayer | src/components/LottiePlayer.vue (lottie-web 5.13) | Local `public/lottie/*.json` placeholders; reduced-motion skips; destroy on unmount |
-| Auth shell | src/views/auth/SignIn.vue + SignUp.vue (@clerk/vue 2.5.7) | LIVE 2026-09-30: owner added `VITE_CLERK_PUBLISHABLE_KEY`; path-routed Clerk forms render, demo shell retired. Nav uses `Show` + `UserButton` (Vue has no SignedIn/SignedOut). `CLERK_SECRET_KEY` still needed server-side (spec 19). |
+| Auth shell | src/views/auth/SignIn.vue + SignUp.vue (@clerk/vue 2.5.7) | RETIRED 2026-09-30 per owner order — files + dep removed; plan lives in [spec 34](34-customer-auth.md). Lessons kept there (Show vs SignedIn, catch-all routes, appearance, dashboard reset prerequisite). |
 | Team data | src/data/site.js team; Teamsection | Five members; Glory Kinya default (photo/bio/links TBD); initials fallback |
 | TeamDetail | src/views/TeamDetail.vue; `/team/:slug` | GitHub-verified bio/stats/repos; prev/next; cards link out, details on page |
 | ThemeToggle | src/components/ThemeToggle.vue; GlobalNav | Light/System/Dark segmented control; localStorage + OS match; pre-paint init; theme-color sync |
-| SEO | src/lib/seo.js + router.afterEach; index.html; public/{sitemap.xml,robots.txt} | Per-route title/desc/canonical/OG/Twitter; auth noindex; JSON-LD org+site; domain provisional (VITE_SITE_URL) |
+| SEO | src/lib/seo.js + router.afterEach; index.html; public/{sitemap.xml,robots.txt} | Per-route title/desc/canonical/OG/Twitter; 404 noindex; JSON-LD org+site; domain provisional (VITE_SITE_URL) |
+| Newsletter | PLANNED (spec 19) | Contract + welcome template ready; no frontend/backend code ships until the fullstack phase |
 | Service data | src/data/site.js; Home/Nav/Footer/Card | Six services, route, tags, icon, tone; inquiry builder encodes message once |
 
 Future shared form, case-study, FAQ, consent and admin components register in their owning specs.

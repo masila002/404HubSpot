@@ -18,12 +18,10 @@ const BASE = {
   MobileApps: ["Mobile App Development Kenya (iOS & Android) | 404HubSpot", "Native and cross-platform apps with M-Pesa, push and store deployment handled."],
   MPesaIntegration: ["M-Pesa Daraja API Integration Kenya | 404HubSpot", "STK Push to full Daraja suite — sandbox-tested, production-hardened M-Pesa payments."],
   GraphicsDesign: ["Graphics Design & Brand Identity Kenya | 404HubSpot", "Logos, brand kits and marketing sets — a visual identity that feels like you."],
-  SignIn: ["Sign in | 404HubSpot", "Sign in to follow inquiries, classes and project updates."],
-  SignUp: ["Create account | 404HubSpot", "One account for inquiries, class bookings and project follow-ups."],
+  NotFound: ["Page not found | 404HubSpot", "That page took a wrong turn. Head home or pick a popular destination."],
 };
 
 function upsert(tag, attrs) {
-  const key = attrs.name || attrs.property || attrs.rel;
   const sel = attrs.name
     ? `meta[name="${attrs.name}"]`
     : attrs.property
@@ -38,13 +36,22 @@ function upsert(tag, attrs) {
   return el;
 }
 
-export function applySeo(route, team = []) {
+export function applySeo(route, team = [], courses = []) {
   let title = "404HubSpot";
   let description = BASE.Home[1];
   let noindex = false;
   let path = route.path;
 
-  if (route.name === "TeamDetail") {
+  if (route.name === "CourseDetail") {
+    const c = courses.find((t) => t.slug === route.params.slug);
+    if (c) {
+      title = `${c.name} — ${c.level} | 404HubSpot Courses`;
+      description = `${c.name}: ${c.tagline} ${c.duration}. Fee ${c.fee}.`;
+    } else {
+      title = "Course | 404HubSpot";
+      noindex = true;
+    }
+  } else if (route.name === "TeamDetail") {
     const m = team.find((t) => t.slug === route.params.slug);
     if (m) {
       title = `${m.name} — ${m.role} | 404HubSpot`;
@@ -55,7 +62,7 @@ export function applySeo(route, team = []) {
     }
   } else if (BASE[route.name]) {
     [title, description] = BASE[route.name];
-    if (route.name === "SignIn" || route.name === "SignUp") noindex = true;
+    if (route.name === "NotFound") noindex = true;
   }
 
   const canonical = `${SITE_URL}${path === "/" ? "/" : path}`;

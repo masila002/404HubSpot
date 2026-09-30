@@ -34,14 +34,11 @@
               <div><b>Email</b><br /><a href="mailto:hubspot861@gmail.com" style="color:var(--site-brand)">hubspot861@gmail.com</a></div>
               <div><b>WhatsApp</b><br /><a :href="whatsappUrl('Hello, I would like to discuss a project.')" target="_blank" rel="noopener noreferrer" style="color:var(--site-brand)">Chat now ↗</a></div>
               <div><b>Google Meet</b><br /><a :href="googleMeetUrl" target="_blank" rel="noopener noreferrer" style="color:var(--site-brand)">Schedule a consultation ↗</a></div>
-              <div><b>Prefer accounts?</b><br /><router-link to="/sign-in" style="color:var(--site-brand)">Sign in / create account →</router-link></div>
             </div>
           </div>
           <div class="panel-card" data-reveal>
             <span class="eyebrow">QUICK QUOTE FORM</span>
             <h2 style="margin: 10px 0 18px">Scope in 60 seconds.</h2>
-            <div v-if="formSubmitted" class="panel-card" style="background:var(--site-mint);margin-bottom:16px"><b>Message sent!</b><p style="font-size:12px">We reply within 24 hours — a confirmation email follows once Brevo is connected.</p></div>
-            <div v-if="formError" class="panel-card" style="background:#fdecec;margin-bottom:16px"><b>Check the form</b><p style="font-size:12px">{{ formError }}</p></div>
             <form @submit.prevent="submitForm" style="display:grid;gap:14px">
               <div class="form-row"><label for="name">Full name *</label><input id="name" v-model="form.name" required placeholder="June Chemuu" @blur="validateField('name')" /><p v-if="errors.name" style="color:#b3261e;font-size:12px">{{ errors.name }}</p></div>
               <div class="form-row"><label for="email">Email *</label><input id="email" v-model="form.email" type="email" required placeholder="june@example.com" @blur="validateField('email')" /><p v-if="errors.email" style="color:#b3261e;font-size:12px">{{ errors.email }}</p></div>
@@ -49,7 +46,8 @@
               <div class="form-row"><label for="service">Service *</label><select id="service" v-model="form.service" required @change="validateField('service')"><option value="">Select a service</option><option>Web Development</option><option>Software Development</option><option>Mobile Apps</option><option>M-Pesa Integration</option><option>Graphics Design</option><option>Programming Classes</option></select></div>
               <div class="form-row"><label for="budget">Budget</label><select id="budget" v-model="form.budget"><option value="">Select budget range</option><option>Under KES 50,000</option><option>KES 50,000 - 150,000</option><option>KES 150,000 - 500,000</option><option>KES 500,000+</option><option>Not sure yet</option></select></div>
               <div class="form-row"><label for="description">Project details *</label><textarea id="description" v-model="form.description" required rows="5" placeholder="Goals, timeline, must-haves..." @blur="validateField('description')"></textarea><p style="font-size:11px;color:var(--site-muted)">{{ form.description.length }}/1000</p></div>
-              <button type="submit" class="action action-dark" :disabled="submitting || !isFormValid" style="width:100%">{{ submitting ? 'Sending…' : 'Send message' }}</button>
+              <button type="submit" class="action action-dark" :disabled="!isFormValid" style="width:100%">Send via WhatsApp</button>
+              <p v-if="formNote" style="font-size:12px;color:var(--site-muted)">{{ formNote }}</p>
               <p style="font-size:11px;color:var(--site-muted)">By sending, you agree to be contacted about your inquiry.</p>
             </form>
           </div>
@@ -67,8 +65,7 @@ import Footer from '../components/Footer.vue'
 import PageHero from '../components/PageHero.vue'
 import UiIcon from '../components/UiIcon.vue'
 import { ref } from 'vue'
-import { useReveal } from '../composables/useReveal'
-import { submitInquiry, toInquiryPayload, INQUIRY_ENDPOINT } from '../lib/brevo'
+import { useReveal, useMagnetic } from '../composables/useReveal'
 
 export default {
   name: 'Contact',
@@ -81,15 +78,14 @@ export default {
   setup() {
     const root = ref(null);
     useReveal(root);
+    useMagnetic(root);
     return { root };
   },
   data() {
     return {
       whatsappNumber: '254708345963', // Replace with your actual WhatsApp number
       googleMeetUrl: 'https://meet.google.com/your-meeting-link', // Replace with your Google Meet link
-      submitting: false,
-      formSubmitted: false,
-      formError: '',
+      formNote: '',
       errors: {},
       form: {
         name: '',
@@ -165,56 +161,34 @@ export default {
       this.validateField('description')
       return Object.keys(this.errors).length === 0 || Object.values(this.errors).every(e => !e)
     },
-    async submitForm(event) {
-      // Reset previous states
-      this.formSubmitted = false
-      this.formError = ''
-      
-      // Validate form
+    submitForm() {
+      // No backend yet (spec 19 owns POST /api/v1/inquiries): validate here,
+      // then hand the inquiry to WhatsApp prefilled — a real channel today.
+      this.formNote = ''
       if (!this.validateForm()) {
-        this.formError = 'Please correct the errors in the form'
+        this.formNote = 'Please correct the highlighted fields, then send again.'
         return
       }
-
-      this.submitting = true
-
-      try {
-        // Brevo path: first-party inquiry endpoint (docs/integrations/BREVO.md).
-        // Demo until the endpoint + BREVO_API_KEY exist server-side.
-        await submitInquiry(toInquiryPayload(this.form))
-
-        this.formSubmitted = true
-        this.form = {
-          name: '',
-          email: '',
-          phone: '',
-          service: '',
-          budget: '',
-          timeline: '',
-          description: ''
-        }
-        this.errors = {}
-
-        // Scroll to top to show success message
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-
-        // Reset success message after 10 seconds
-        setTimeout(() => {
-          this.formSubmitted = false
-        }, 10000)
-      } catch (error) {
-        console.error('Form submission error:', error)
-        this.formError = `Could not reach the inquiry endpoint (${INQUIRY_ENDPOINT}). The Brevo sender/key are not configured yet — please use WhatsApp or email for now.`
-      } finally {
-        this.submitting = false
-      }
+      const lines = [
+        `Name: ${this.form.name.trim()}`,
+        `Email: ${this.form.email.trim()}`,
+        this.form.phone.trim() ? `Phone: ${this.form.phone.trim()}` : null,
+        `Service: ${this.form.service}`,
+        this.form.budget ? `Budget: ${this.form.budget}` : null,
+        `Details: ${this.form.description.trim()}`,
+      ].filter(Boolean)
+      window.open(
+        this.whatsappUrl(`Hello 404HubSpot, new inquiry:\n${lines.join('\n')}`),
+        '_blank',
+        'noopener,noreferrer',
+      )
+      this.formNote = 'Opening WhatsApp with your inquiry prefilled — press send there and we reply within 24 hours.'
     }
   },
   mounted() {
-    // Check for success parameter in URL (legacy redirect support)
     const urlParams = new URLSearchParams(window.location.search)
     if (urlParams.get('success') === 'true') {
-      this.formSubmitted = true
+      this.formNote = 'Message noted — we reply within 24 hours.'
     }
   }
 }

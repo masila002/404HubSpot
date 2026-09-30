@@ -56,6 +56,17 @@
         </div>
       </section>
 
+
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">EVERYTHING ELSE WE DO</span><h2>All services.<br /><span class="muted-heading">One partner.</span></h2></div>
+          <p>Every offering, one team — hop to any detail page.</p>
+        </div>
+        <div class="services-grid">
+          <ServiceCard v-for="service in services" :key="service.id" :service="service" />
+        </div>
+      </section>
+
       <section class="closing-section site-container" data-reveal>
         <div class="closing-card">
           <span class="eyebrow">READY WHEN YOU ARE</span>
@@ -78,18 +89,20 @@ import Footer from "../../components/Footer.vue";
 import PageHero from "../../components/PageHero.vue";
 import LottiePlayer from "../../components/LottiePlayer.vue";
 import UiIcon from "../../components/UiIcon.vue";
-import { pricing, whatsappUrl } from "../../data/site";
-import { useReveal } from "../../composables/useReveal";
+import ServiceCard from "../../components/ServiceCard.vue";
+import { pricing, services, whatsappUrl } from "../../data/site";
+import { useReveal, useMagnetic } from "../../composables/useReveal";
 import orbit from "../../assets/lottie/orbit.json";
 
 export default {
   name: "MobileApps",
-  components: { GlobalNav, Footer, PageHero, LottiePlayer, UiIcon },
+  components: { GlobalNav, Footer, PageHero, LottiePlayer, UiIcon, ServiceCard },
   setup() {
     const root = ref(null);
     useReveal(root);
+    useMagnetic(root);
     return {
-      root, pricing, orbit,
+      root, pricing, services, orbit,
       steps: [
         { title: "Concept & Strategy", body: "Audience, features and roadmap — what to cut, what to keep." },
 { title: "UI/UX Design", body: "Wireframes to high-fidelity flows for both platforms." },

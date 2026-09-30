@@ -7,9 +7,12 @@ available; official docs used directly.
 
 ## Deviation (owner-ordered, documented here)
 
-Formspree is REMOVED. The contact form now POSTs to the first-party inquiry
-endpoint (`VITE_INQUIRY_ENDPOINT`, default `/api/inquiries`), which validates,
-stores (backend spec 19), and sends two Brevo transactional emails:
+Formspree is REMOVED. Owner order 2026-09-30 (second pass): contact and
+newsletter sends are BACKEND ONLY — no browser-to-Brevo code ships.
+`src/lib/brevo.js`, `NewsletterForm.vue` and `ResultModal.vue` were removed;
+the live Contact form validates locally and hands the prefilled inquiry to
+WhatsApp (a real channel today). This document is now purely the server
+contract for spec 19, which implements both endpoints.
 
 1. Internal notification → team inbox (`INQUIRY_TO_EMAIL`), template `emails/inquiry-internal.html`.
 2. Auto-reply → visitor, template `emails/inquiry-autoreply.html`.
@@ -34,6 +37,22 @@ copy; this contract follows Brevo's official API instead.
 Success: `201/200` JSON. Failure: non-2xx with `{ "message": "..." }`.
 The form (`src/views/Contact.vue` + `src/lib/brevo.js`) shows inline errors and
 falls back to WhatsApp/email links — it never claims delivery it can't confirm.
+
+## Newsletter contract (same backend owner, spec 19)
+
+`POST {VITE_NEWSLETTER_ENDPOINT}` (default `/api/newsletter`):
+
+```json
+{ "email": "june@example.com", "source": "404hubspot-newsletter" }
+```
+
+Server: validate, create/update the Brevo contact (double opt-in template),
+then send `emails/newsletter-welcome.html` with
+`params: { email, unsubscribeUrl }`. Reuses the same verified sender.
+`unsubscribeUrl` must be a real one-click URL before going live (owner gate).
+UI: `src/components/NewsletterForm.vue` (email-only, inline validation,
+honest demo-mode error) embedded in the Contact page panel and the
+sitewide footer strip.
 
 ## Brevo send (server side only)
 

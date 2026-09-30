@@ -8,6 +8,7 @@ Fixed in 02b: LanguageCard phone now uses shared `whatsappUrl` (254708345963);
 Formspree removed per owner order (see docs/integrations/BREVO.md);
 `bugs/UI-VISIBILITY.png` flow-bottom dark-on-dark fixed by declaring the
 pair (#f8faf4 on #314d42, 8.80:1) plus full light/dark/system theme audit below.
+`bugs/auth.png` records the retired Clerk prototype (spec 34 owns the plan).
 
 Addressed in redesign: missing team portrait requests, placeholder footer social links,
 navbar listener cleanup, menu keyboard dismissal, and route scroll reset.
