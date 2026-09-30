@@ -96,6 +96,7 @@ Per-file hashes: docs/design/evidence/source-snapshot.json; the feature commit c
 - 404 page (`/:pathMatch(.*)*`): landing-styled lost-and-found with Lottie (`src/assets/lottie/notfound.json`), action buttons + popular destinations, noindex.
 - Pricing bands provisional (search integration down, no Context7) — owner confirmation gates quotes.
 - Evidence refresh 2026-09-30: `docs/design/evidence/landing-{360,768,1024,1440,1920}.png` regenerated; `npm run build` PASS (69 modules, 0 errors; CSS 38.54 kB / JS 325.19 kB + lottie 307.91 kB); `git diff --check` PASS.
+- Owner-ordered addition 2026-09-30: vendored external IDE/agent skill packs under `.agents/skills/` (clerk-testing, clerk-vue-patterns, gsap-*, vue; 23 files, ~140K, docs/templates only, no secrets) per explicit `COMMIT AND PUSH THAT ONE TOO`. Not part of 02b spec scope; recorded here as deviation with owner approval.
 
 ## 4. Contract synchronization and deviations
 
