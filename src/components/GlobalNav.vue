@@ -294,7 +294,7 @@ export default {
   border-bottom: 1px solid rgba(0, 102, 102, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   /* Safe area for notched devices */
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
