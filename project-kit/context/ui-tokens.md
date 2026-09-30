@@ -21,7 +21,7 @@ Implementation: `src/styles/landing.css :root`. Intentional choices, not pixel-s
 | radius / --site-radius | 20px | Cards; 8px buttons, 24px feature panels |
 | shadow / --site-shadow | 0 8px 24px #203b3606 | Quiet card depth |
 
-Inter/system sans for body/display; native monospace for overlines/code. Main display scales
+Inter/system sans for body/UI; Fraunces serif for executive display (h1/h2, v2 2026-09-30 — editorial trust for services + training); native monospace for overlines/code. Main display scales
 46–78px; section headings 30–42px; paragraph 12–15px; tiny illustration text is decorative.
 Layout: max 1240px, desktop gutters 48px, mobile 20px. Section spacing 88/65/48px.
 Grid: 18px services gap, 22px team gap. Buttons and icon actions ≥44px high.

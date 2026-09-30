@@ -40,6 +40,8 @@ Dependencies define eligibility, not permission to batch implementation. Root tr
 
 | 33 | Graphics design service redesign | frontend | 02,03 | [Spec](33-graphics-design-page.md) |
 
+| 02b | Unified site revamp bundle (owner-approved exception) | frontend | 01 | [Spec](02-unified-site-revamp.md) |
+
 Optional public AI pilot (28) is demand-gated. Scaling review (32) may conclude that no new
 runtime is needed. Native mobile, microservices, customer portal and payment collection have
 no implementation spec because their business need is not established.

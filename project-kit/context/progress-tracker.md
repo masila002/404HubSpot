@@ -2,10 +2,9 @@
 
 ## 0. Execution chain
 
-Current: 01 complete for review on `feature/web/01-landing-redesign`.
-Next eligible after user review/merge: 02 content/brand audit; user may prioritize 16 CI/previews.
-Specs 02–33 remain PLANNED. Full dependency order: docs/planning/IMPLEMENTATION-ROADMAP.md.
-One spec/branch/PR; do not begin the next feature automatically.
+Current: 01 merged to `main` (`cb5d263`); 02b unified revamp IN PROGRESS on `feature/web/02-unified-site-revamp` (owner-approved bundle of 02–09,12,33 + Clerk/GSAP/Lottie/font/pricing).
+Next eligible after user review/merge: 02 content truth confirmation (prices/team/keys), then remaining staged specs one-by-one.
+One spec/branch/PR normally; 02b is a documented single exception — do not batch further without approval.
 
 ## 1. Status board
 
@@ -13,6 +12,7 @@ One spec/branch/PR; do not begin the next feature automatically.
 |---|---|---|---|---|
 | 01 | Landing/shared shell redesign + workflow/architecture planning | READY FOR REVIEW | 57 browser checks; build; 193 links; 23 reference hashes | Visual review OPEN; merge OPEN; deployment NOT RUN |
 | 02–33 | Remaining portfolio and staged full-stack features | PLANNED | Detailed specs and dependency graph | Per-spec content/provider/identity/budget gates OPEN |
+| 02b | Unified site revamp (all pages + motion + Clerk shell + pricing) | IN PROGRESS | Branch `feature/web/02-unified-site-revamp`; spec 02-unified-site-revamp.md | Visual review OPEN; owner price/team/key confirmation OPEN |
 
 ## 2. Delivered scope
 
@@ -29,6 +29,8 @@ One spec/branch/PR; do not begin the next feature automatically.
 - Backend, database, admin, AI, MCP, hosting provisioning, mobile and microservices are NOT built.
 
 ## 3. Verification
+
+### 3a. Feature 01 (merged to main `cb5d263`) — historical record
 
 Tested source based on fetched origin/main `16f9a7a72351f2b4226b200aed1b6587f820586e`.
 Exact working-source fingerprint: `af24480e670ea51a1e10a6437c8439ae9a34a76ace61179ac1edd08b0e67d19a`.
@@ -47,6 +49,13 @@ Per-file hashes: docs/design/evidence/source-snapshot.json; the feature commit c
 - `git diff --check`: PASS. Manifest, lockfile and hosting configuration diffs: empty.
 - Browser captures: docs/design/evidence/landing-{360,768,1024,1440,1920}.png.
 
+### 3b. Feature 02b unified revamp (this branch, 2026-09-30)
+- `npm run build`: PASS; 99 modules; 0 errors. CSS 33.36 kB, JS ~601 kB (incl. gsap + lottie chunks). Warnings only: caniuse-lite age, module-type inference, lottie eval notice.
+- `verify-ui.cjs`: PASS, 67 grouped checks (55 route×viewport: 11 routes × 360/768/1024/1440/1920). Zero runtime errors; no overflow; skip links, menu/disclosure keyboard, anchors, reduced motion verified.
+- Playwright 1.63.0 + Chromium 130.0.6723.31 via PLAYWRIGHT_MODULE/CHROMIUM_PATH.
+- `git diff --check`: PASS.
+- Pricing bands provisional (search integration down, no Context7) — owner confirmation gates quotes.
+
 ## 4. Contract synchronization and deviations
 
 Updated public-navigation contract, canonical UI tokens/rules/registry, owner and consumer context,
@@ -59,9 +68,7 @@ Official documentation fallback used because no Context7 MCP tool was available;
 
 ## 5. Open limits and next action
 
-User visual review and merge: OPEN. Production deployment: not requested/run in this feature.
-Existing Contact form/meeting placeholders and LanguageCard phone mismatch are recorded in bugs/INDEX.md;
-no real inquiry was submitted. Owner-approved copy/assets/provider choices gate later specs.
+02b review/merge: OPEN. Owner must confirm: Glory Kinya photo/bio/links; Frank “Fullstack Developer & Designer” and Don “AI Engineer & System Architect” titles; provisional KES bands; Clerk publishable key + Formspree/Meet IDs. Production deployment not run.
+Existing Contact form/meeting placeholders remain (demo until IDs set); LanguageCard phone mismatch FIXED in 02b via shared whatsappUrl.
 External social destinations not live-verified; manual screen-reader/Firefox/WebKit checks not run.
-No future backend, database, MCP, AI, retention, security or deployment tests are claimed as passing.
-Review feature 01; after merge fetch main and select exactly one next spec.
+No backend, database, MCP, AI, retention, security or deployment tests are claimed as passing.

@@ -14,6 +14,8 @@ const routes = [
   "/services/mobile-apps",
   "/services/m-pesa-integration",
   "/services/graphics-design",
+  "/sign-in",
+  "/sign-up",
 ];
 (async () => {
   const browser = await chromium.launch({
@@ -42,7 +44,7 @@ const routes = [
     }
     await page.goto(base);
     assert.equal(await page.locator(".service-card").count(), 6);
-    assert.equal(await page.locator(".team-card").count(), 4);
+    assert.equal(await page.locator(".team-card").count(), 5);
     await page.locator("#team").scrollIntoViewIfNeeded();
     await page.waitForFunction(() =>
       [...document.querySelectorAll("img")].every(
@@ -146,7 +148,7 @@ const routes = [
   const result = {
     checkedAt: new Date().toISOString(),
     checks,
-    routeViewportChecks: 45,
+    routeViewportChecks: 55,
     runtimeErrors: errors,
     browser: await browser.version(),
     playwright: require(

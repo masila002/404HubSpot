@@ -1,8 +1,8 @@
 <template>
-  <div class="landing-page">
+  <div class="landing-page" ref="root">
     <GlobalNav />
     <main id="main-content" tabindex="-1">
-      <section class="hero-section site-container">
+      <section class="hero-section site-container" data-hero>
         <div class="hero-copy">
           <span class="hero-kicker"
             ><span class="status-dot"></span> YOUR NEXT CHAPTER STARTS
@@ -74,6 +74,7 @@
       <section
         id="services"
         class="services-section section-space site-container"
+        data-reveal
       >
         <div class="section-heading">
           <div>
@@ -97,7 +98,7 @@
           />
         </div>
       </section>
-      <section class="payment-feature site-container">
+      <section class="payment-feature site-container" data-reveal>
         <div class="payment-feature-inner">
           <div class="payment-feature-copy">
             <span class="eyebrow">BUILT FOR THE WAY KENYA PAYS</span>
@@ -136,6 +137,7 @@
       <section
         id="learning"
         class="learning-section section-space site-container"
+        data-reveal
       >
         <div class="learning-art" aria-label="Programming course illustration">
           <div class="lesson-window">
@@ -186,7 +188,7 @@
           /></router-link>
         </div>
       </section>
-      <section id="process" class="process-section section-space">
+      <section id="process" class="process-section section-space" data-reveal>
         <div class="site-container">
           <div class="section-heading">
             <div>
@@ -210,7 +212,7 @@
         </div>
       </section>
       <TeamSection />
-      <section class="closing-section site-container">
+      <section class="closing-section site-container" data-reveal>
         <div class="closing-card">
           <span class="eyebrow">LET’S MAKE YOUR NEXT MOVE A GOOD ONE</span>
           <h2>
@@ -246,6 +248,8 @@ import BuildPreview from "../components/BuildPreview.vue";
 import UiIcon from "../components/UiIcon.vue";
 import TeamSection from "./services/Teamsection.vue";
 import { services, contact, whatsappUrl } from "../data/site";
+import { ref } from "vue";
+import { useReveal } from "../composables/useReveal";
 export default {
   name: "Home",
   components: {
@@ -255,6 +259,11 @@ export default {
     BuildPreview,
     UiIcon,
     TeamSection,
+  },
+  setup() {
+    const root = ref(null);
+    useReveal(root);
+    return { root };
   },
   data() {
     return {

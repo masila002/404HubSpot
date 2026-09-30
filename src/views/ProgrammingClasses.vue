@@ -1,132 +1,75 @@
 <template>
-  <div class="min-h-screen">
+  <div class="page-shell landing-page" ref="root">
     <GlobalNav />
-    
-    <!-- Header Section -->
-    <section class="bg-gradient-to-br from-gray-50 to-teal-50 py-20">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            Master the Language of the Future
-          </h2>
-          <p class="text-xl text-gray-700">
-            Join our expert-led programming classes and transform your career
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Language Cards -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-          <LanguageCard
-            v-for="language in languages"
-            :key="language.id"
-            :language="language"
-          />
-        </div>
-
-        <!-- Class Format Details -->
-        <div class="max-w-4xl mx-auto">
-          <h3 class="text-2xl md:text-3xl font-bold text-center mb-12 text-gray-900">
-            Why Choose Our Classes?
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center">
-              <div class="bg-teal-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h4 class="text-xl font-semibold mb-2">Live Google Meet</h4>
-              <p class="text-gray-600">Interactive live sessions with real-time Q&A</p>
+    <main id="main-content" tabindex="-1">
+      <PageHero
+        kicker="LEARN — FROM CURIOUS TO CAPABLE"
+        title="Don't just use tech. <em>Learn to create it.</em>"
+        lede="Live Google Meet classes, 1-on-1 mentorship and portfolio projects — mentored by working developers."
+      >
+        <template #actions>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I'd like to secure a class spot.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Secure spot on WhatsApp <UiIcon name="diagonal" /></a>
+          <router-link to="/contact" class="text-action">Ask about schedules <UiIcon name="arrow" /></router-link>
+        </template>
+        <template #art>
+          <div class="hero-art" style="background: var(--site-sand)">
+            <div class="lesson-window" style="margin: 28px">
+              <div class="lesson-top"><span class="window-dots"><i></i><i></i><i></i></span><span>hello_future.py</span><span>Python</span></div>
+              <div class="lesson-code"><span>01 <i># Every builder starts somewhere.</i></span><span>03 <b>def</b> build_your_future():</span><span>04 &nbsp;&nbsp;skills = <em>"Learn by doing"</em></span><span>07 <b>print</b>(<em>"Hello, future!"</em>)</span></div>
+              <div class="lesson-output"><span>OUTPUT</span><p>Hello, future! <span class="cursor-mark">▍</span></p></div>
             </div>
-            <div class="text-center">
-              <div class="bg-teal-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <h4 class="text-xl font-semibold mb-2">1-on-1 Mentorship</h4>
-              <p class="text-gray-600">Personalized guidance from industry experts</p>
-            </div>
-            <div class="text-center">
-              <div class="bg-teal-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h4 class="text-xl font-semibold mb-2">Project-Based Learning</h4>
-              <p class="text-gray-600">Build real-world projects to showcase your skills</p>
-            </div>
+            <LottiePlayer :animation-data="spark" label="Spark illustration" style="position:absolute;top:20px;right:20px;width:110px" />
           </div>
-        </div>
+        </template>
+      </PageHero>
 
-        <!-- CTA Section -->
-        <div class="text-center mt-16">
-          <a 
-            :href="whatsappUrl('I%27d_like_to_secure_my_spot_in_a_programming_class')"
-            target="_blank"
-            class="btn-primary text-lg px-8 py-4"
-          >
-            Secure your spot via WhatsApp
-          </a>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">01 / PATHS & FEES</span><h2>Pick your track.<br /><span class="muted-heading">Build week one.</span></h2></div>
+          <p>Per-level Kenya bands (owner-review). Schedules and availability confirm on WhatsApp.</p>
         </div>
-      </div>
-    </section>
+        <div class="services-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
+          <LanguageCard v-for="l in languages" :key="l.id" :language="l" />
+        </div>
+      </section>
 
+      <section class="section-space site-container" data-reveal>
+        <div class="panel-card">
+          <span class="eyebrow">02 / WHY US</span>
+          <h2 style="margin-top:10px">Live, personal, project-based.</h2>
+          <div class="services-grid" style="margin-top:22px">
+            <div><h3>Live Google Meet</h3><p style="color:var(--site-muted);font-size:12px;margin-top:8px">Interactive sessions with real-time Q&A.</p></div>
+            <div><h3>1-on-1 Mentorship</h3><p style="color:var(--site-muted);font-size:12px;margin-top:8px">Guidance from people who ship daily.</p></div>
+            <div><h3>Portfolio Projects</h3><p style="color:var(--site-muted);font-size:12px;margin-top:8px">Leave with work you can show.</p></div>
+          </div>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I'd like class details and schedule.`)" target="_blank" rel="noopener noreferrer" class="action action-dark" style="margin-top:22px">Ask on WhatsApp <UiIcon name="diagonal" /></a>
+        </div>
+      </section>
+    </main>
     <Footer />
   </div>
 </template>
-
 <script>
-import GlobalNav from '../components/GlobalNav.vue'
-import Footer from '../components/Footer.vue'
-import LanguageCard from '../components/LanguageCard.vue'
+import { ref } from "vue";
+import GlobalNav from "../components/GlobalNav.vue";
+import Footer from "../components/Footer.vue";
+import PageHero from "../components/PageHero.vue";
+import LottiePlayer from "../components/LottiePlayer.vue";
+import LanguageCard from "../components/LanguageCard.vue";
+import UiIcon from "../components/UiIcon.vue";
+import { pricing, whatsappUrl } from "../data/site";
+import { useReveal } from "../composables/useReveal";
+import spark from "../../public/lottie/spark.json";
 
 export default {
-  name: 'ProgrammingClasses',
-  components: {
-    GlobalNav,
-    Footer,
-    LanguageCard
+  name: "ProgrammingClasses",
+  components: { GlobalNav, Footer, PageHero, LottiePlayer, LanguageCard, UiIcon },
+  setup() {
+    const root = ref(null);
+    useReveal(root);
+    const languages = pricing.classes.map((c, i) => ({ id: i + 1, name: c.name, description: c.blurb, range: c.range, cta: c.cta }));
+    return { root, languages, spark };
   },
-  data() {
-    return {
-      whatsappNumber: '254708345963', // Replace with your actual WhatsApp number
-      languages: [
-        {
-          id: 1,
-          name: 'Python',
-          description: 'Data Science & Automation',
-          whatsappText: 'I%27d_like_to_join_the_Python_Class'
-        },
-        {
-          id: 2,
-          name: 'JavaScript',
-          description: 'Fullstack Web Development',
-          whatsappText: 'I%27d_like_to_join_the_JavaScript_Class'
-        },
-        {
-          id: 3,
-          name: 'SQL',
-          description: 'Database Management',
-          whatsappText: 'I%27d_like_to_join_the_SQL_Class'
-        },
-        {
-          id: 4,
-          name: 'Scratch',
-          description: 'Programming Logic for Beginners',
-          whatsappText: 'I%27d_like_to_join_the_Scratch_Class'
-        }
-      ]
-    }
-  },
-  methods: {
-    whatsappUrl(text) {
-      return `https://wa.me/${this.whatsappNumber}?text=${text}`
-    }
-  }
-}
+  methods: { whatsappUrl },
+};
 </script>

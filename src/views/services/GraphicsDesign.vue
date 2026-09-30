@@ -1,117 +1,103 @@
 <template>
-  <div class="min-h-screen">
+  <div class="page-shell landing-page" ref="root">
     <GlobalNav />
-    
-    <section class="bg-gradient-to-br from-gray-50 to-teal-50 py-20">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Graphics Design Services</h1>
-          <p class="text-xl text-gray-700">Professional branding, logos, and visual design services</p>
-        </div>
-      </div>
-    </section>
+    <main id="main-content" tabindex="-1">
+      <PageHero
+        kicker="DESIGN — IDENTITY THAT STICKS"
+        title="Look like <em>you mean it.</em>"
+        lede="Logos, brand kits and marketing sets — consistent everywhere."
+      >
+        <template #actions>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I need design work.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Start on WhatsApp <UiIcon name="diagonal" /></a>
+          <router-link to="/contact" class="text-action">Get a scoped quote <UiIcon name="arrow" /></router-link>
+        </template>
+        <template #art>
+          <div class="hero-art">
+            <div class="preview-grid"></div>
+            <span class="preview-coordinate">BRIEF → CONCEPT → KIT</span>
+            <LottiePlayer :animation-data="orbit" label="Orbit illustration" style="position:absolute;top:24px;right:24px;width:150px" />
+            <div class="browser-preview" style="top:90px">
+              <div class="browser-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>your-site.co.ke</span><span>↗</span></div>
+              <div class="mock-site-content"><span class="mini-label">BUILT FOR WHAT'S NEXT</span><strong>Fast. Clear.<br /><em>Made to convert.</em></strong><span class="mock-button">Let's build ↗</span></div>
+              <div class="mock-site-footer"><span>RESPONSIVE BY DEFAULT</span><span>01 / 03</span></div>
+            </div>
+            <span class="preview-caption">360 → 1920PX READY</span>
+          </div>
+        </template>
+      </PageHero>
 
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Our Design Process</h2>
-        <div class="max-w-4xl mx-auto">
-          <div class="space-y-8">
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">1</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Brand Discovery</h3>
-                <p class="text-gray-600">We learn about your brand, values, target audience, and competition. We create a design brief that guides the entire project.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">2</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Concept Development</h3>
-                <p class="text-gray-600">We create multiple design concepts and present them for your review. Each concept explores different creative directions.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">3</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Refinement</h3>
-                <p class="text-gray-600">Based on your feedback, we refine the selected concept. We perfect colors, typography, and visual elements until it's exactly right.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">4</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Final Delivery</h3>
-                <p class="text-gray-600">We deliver all final files in various formats (PNG, SVG, PDF, etc.) and provide brand guidelines for consistent usage.</p>
-              </div>
-            </div>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">01 / HOW WE BUILD</span><h2>Discovery to launch.<br /><span class="muted-heading">No surprises.</span></h2></div>
+          <p>Same executive rhythm as home — five clear steps, weekly demos, clean handover.</p>
+        </div>
+        <div class="process-timeline">
+          <div v-for="(s, i) in steps" :key="s.title" class="process-row" data-reveal>
+            <span class="process-num">{{ i + 1 }}</span>
+            <div><h3>{{ s.title }}</h3><p style="color:var(--site-muted);font-size:13px;line-height:1.8;margin-top:8px">{{ s.body }}</p></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="py-20 bg-gray-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Graphics Design Pricing</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Logo Design</h3>
-            <div class="mb-6"><span class="text-4xl font-bold text-teal">KES 15,000</span><span class="text-gray-600"> - 30,000</span></div>
-            <ul class="space-y-3 mb-8 text-gray-600">
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>3 initial concepts</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>2 rounds of revisions</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Multiple file formats</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Color variations</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_Logo_Design')" target="_blank" class="btn-outline w-full text-center block">Get Started</a>
-          </div>
-
-          <div class="bg-teal-dark rounded-lg shadow-lg p-8 text-white transform scale-105">
-            <div class="bg-peach text-white text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">POPULAR</div>
-            <h3 class="text-2xl font-bold mb-4">Brand Identity</h3>
-            <div class="mb-6"><span class="text-4xl font-bold">KES 50,000</span><span class="text-gray-300"> - 100,000</span></div>
-            <ul class="space-y-3 mb-8 text-gray-200">
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Logo design</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Business cards</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Letterhead & envelope</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Brand guidelines</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Social media templates</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_Brand_Identity_Design')" target="_blank" class="btn-primary bg-peach hover:bg-peach-dark w-full text-center block">Get Started</a>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Marketing Materials</h3>
-            <div class="mb-6"><span class="text-4xl font-bold text-teal">KES 20,000</span><span class="text-gray-600">+</span></div>
-            <ul class="space-y-3 mb-8 text-gray-600">
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Flyers & brochures</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Social media graphics</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Banner designs</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Email templates</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_Marketing_Materials_Design')" target="_blank" class="btn-outline w-full text-center block">Get Started</a>
-          </div>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">02 / KENYA-REALISTIC PRICING</span><h2>Fair prices.<br /><span class="muted-heading">No undercharging.</span></h2></div>
+          <p>Owner-review bands (2026-09-30). Final quote confirms scope on WhatsApp — 50% to start, 50% on delivery.</p>
         </div>
-      </div>
-    </section>
+        <div class="pricing-grid">
+          <article v-for="p in pricing.graphics" :key="p.name" class="price-card" :class="{ featured: p.featured }" data-reveal>
+            <span v-if="p.badge" class="badge-pop">{{ p.badge }}</span>
+            <h3>{{ p.name }}</h3>
+            <div class="price-amount">{{ p.range }}</div>
+            <p style="font-size:12px;opacity:.8">{{ p.blurb }}</p>
+            <ul><li v-for="f in p.features" :key="f"><UiIcon name="check" /> {{ f }}</li></ul>
+            <a :href="whatsappUrl(`Hello 404HubSpot, ${p.cta}.`)" target="_blank" rel="noopener noreferrer" :class="['action', p.featured ? 'action-light' : 'action-dark']" style="margin-top:auto">Get started <UiIcon name="diagonal" /></a>
+          </article>
+        </div>
+      </section>
 
+      <section class="closing-section site-container" data-reveal>
+        <div class="closing-card">
+          <span class="eyebrow">READY WHEN YOU ARE</span>
+          <h2>Let's scope your graphicsdesign <span>this week.</span></h2>
+          <div>
+            <a :href="whatsappUrl(`Hello 404HubSpot, I'd like a GraphicsDesign quote.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Chat on WhatsApp <UiIcon name="diagonal" /></a>
+            <router-link to="/our-process" class="text-action">See our process <UiIcon name="arrow" /></router-link>
+          </div>
+          <span class="closing-art" aria-hidden="true">✳</span>
+        </div>
+      </section>
+    </main>
     <Footer />
   </div>
 </template>
-
 <script>
-import GlobalNav from '../../components/GlobalNav.vue'
-import Footer from '../../components/Footer.vue'
+import { ref } from "vue";
+import GlobalNav from "../../components/GlobalNav.vue";
+import Footer from "../../components/Footer.vue";
+import PageHero from "../../components/PageHero.vue";
+import LottiePlayer from "../../components/LottiePlayer.vue";
+import UiIcon from "../../components/UiIcon.vue";
+import { pricing, whatsappUrl } from "../../data/site";
+import { useReveal } from "../../composables/useReveal";
+import orbit from "../../../public/lottie/orbit.json";
 
 export default {
-  name: 'GraphicsDesign',
-  components: { GlobalNav, Footer },
-  data() {
-    return { whatsappNumber: '254708345963' }
+  name: "GraphicsDesign",
+  components: { GlobalNav, Footer, PageHero, LottiePlayer, UiIcon },
+  setup() {
+    const root = ref(null);
+    useReveal(root);
+    return {
+      root, pricing, orbit,
+      steps: [
+        { title: "Brand Discovery", body: "Values, audience and competitors into a sharp brief." },
+{ title: "Concept Development", body: "Multiple directions — pick the brave one." },
+{ title: "Refinement", body: "Color, type and lockups perfected with you." },
+{ title: "Final Delivery", body: "PNG/SVG/PDF pack plus usage guidelines." },
+      ],
+    };
   },
-  methods: {
-    whatsappUrl(text) {
-      return `https://wa.me/${this.whatsappNumber}?text=${text}`
-    }
-  }
-}
+  methods: { whatsappUrl },
+};
 </script>

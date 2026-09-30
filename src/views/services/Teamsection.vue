@@ -16,6 +16,7 @@
           v-for="member in teamMembers"
           :key="member.id"
           class="team-card"
+          data-reveal
         >
           <div class="team-portrait">
             <img
@@ -66,50 +67,11 @@
 </template>
 
 <script>
+import { team } from "../../data/site";
 export default {
   name: "Teamsection",
   data() {
-    return {
-      teamMembers: [
-        {
-          id: 1,
-          name: "Francis Masila",
-          role: "Fullstack Developer",
-          bio: "Passionate about technology and problem-solving.",
-          image: "/assets/frank.jpeg", // Replace with actual image path
-          linkedin: "https://linkedin.com/in/francis-masila-34111027b",
-          github: "https://github.com/masila002",
-        },
-        {
-          id: 2,
-          name: "Don Artkins",
-          role: "Fullstack Developer",
-          bio: "Full-stack developer specializing in modern web technologies.",
-          image: null, // Replace with actual image path
-          linkedin: "https://linkedin.com/in/donartkins",
-          twitter: "",
-          github: "https://github.com/DonArtkins",
-        },
-        {
-          id: 3,
-          name: "Eric Njuki",
-          role: "UI/UX Designer",
-          bio: "Creating beautiful and intuitive user experiences.",
-          image: null, // Replace with actual image path
-          linkedin: "https://linkedin.com/in/ericnjuki",
-          github: "https://github.com/Ericnjuki254",
-        },
-        {
-          id: 4,
-          name: "Christine Jemutai",
-          role: "Frontend Developer",
-          bio: "Passionate about frontend development.",
-          image: "/assets/chemuu.jpeg", // Replace with actual image path
-          linkedin: "https://linkedin.com/in/christine kibet",
-          github: "https://github.com/chemuu933",
-        },
-      ],
-    };
+    return { teamMembers: team };
   },
 };
 </script>
