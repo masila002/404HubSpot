@@ -27,4 +27,4 @@ Layout: max 1240px, desktop gutters 48px, mobile 20px. Section spacing 88/65/48p
 Grid: 18px services gap, 22px team gap. Buttons and icon actions ≥44px high.
 Motion: 180ms interaction transition; disable transitions/hover transforms for reduced motion.
 Illustration-only shades may remain local literals; product roles use semantic variables.
-No dark mode in feature 01; dark panels have explicit inverse text roles.
+Themes (02b): light default + `[data-theme="dark"]` remap + `system` (OS match, localStorage `hubspot-theme`, pre-paint init in index.html). Fixed pairs never change: dark panels/buttons #203b36 + #f8faf4; mock illustration cards stay light. Measured 2026-09-30 — light h1 11.41 / muted 5.22 / CTA 11.48 / flow 8.80 / team-role 6.41; dark h1 16.54 / muted 9.42 / CTA 11.48 / flow 8.80 / team-role 10.90. All ≥ 4.5.

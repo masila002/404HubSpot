@@ -50,10 +50,12 @@ Per-file hashes: docs/design/evidence/source-snapshot.json; the feature commit c
 - Browser captures: docs/design/evidence/landing-{360,768,1024,1440,1920}.png.
 
 ### 3b. Feature 02b unified revamp (this branch, 2026-09-30)
-- `npm run build`: PASS; 101 modules; 0 errors. Warnings only: caniuse-lite age, lottie eval notice (module-type warning fixed via `"type": "module"`).
-- `verify-ui.cjs`: PASS, 72 grouped checks (60 route×viewport: 12 routes × 360/768/1024/1440/1920). Zero runtime errors; no overflow; skip links, menu/disclosure keyboard, anchors, reduced motion verified. Script waits 450ms post-navigation for the GSAP route transition.
+- `npm run build`: PASS; 102 modules; 0 errors. Warnings only: caniuse-lite age, lottie eval notice (module-type warning fixed via `"type": "module"`).
+- `verify-ui.cjs`: PASS, 75 grouped checks (60 route×viewport: 12 routes × 360/768/1024/1440/1920 + theme/contrast/interaction). Zero runtime errors; no overflow; skip links, menu/disclosure keyboard, anchors, reduced motion (robust wait), theme toggle UI verified.
 - Team detail fix: App.vue transition close-tag + TeamDetail import paths corrected after dev-server report; stale Vite processes killed so `:5173` is the tested server.
 - GitHub verify 2026-09-30 (api.github.com): DonArtkins 69 repos/63 followers; masila002 35/21; kiki-glow 46/10 + portfolio URL; Ericnjuki254 6/20; chemii933 10/14.
+- Favicon set (owner-supplied, public/favicon/) moved to public/ root so Vercel serves /favicon.ico, /apple-touch-icon.png, /site.webmanifest; manifest rebranded 404HubSpot; vercel.json SPA rewrites added. Per-route SEO via src/lib/seo.js (title/desc/canonical/OG/Twitter, auth noindex, JSON-LD); sitemap.xml + robots.txt; domain provisional (VITE_SITE_URL).
+- Visibility/theme (bugs/UI-VISIBILITY.png): flow-bottom pair declared (#f8faf4 on #314d42); full theme token remap + fixed illustration palette; `verify-ui.cjs` asserts 7 pairs ≥ 4.5 in light AND dark via the real toggle UI. Measured — light min 5.22, dark min 8.80.
 - Pricing bands provisional (search integration down, no Context7) — owner confirmation gates quotes.
 
 ## 4. Contract synchronization and deviations

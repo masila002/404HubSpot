@@ -136,11 +136,75 @@ const routes = [
   assert.ok((await page.locator("#services").boundingBox()).y >= 70);
   checks++;
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.waitForFunction(
+    () => {
+      const el = document.querySelector(".service-card");
+      return el && getComputedStyle(el).transitionDuration === "0s";
+    },
+    null,
+    { timeout: 3000 },
+  );
   const duration = await page
     .locator(".service-card")
     .first()
     .evaluate((el) => getComputedStyle(el).transitionDuration);
   assert.equal(duration, "0s");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  // Theme toggle + contrast audit (bugs/UI-VISIBILITY.png): every pair ≥ 4.5.
+  const ratio = async (fgSel, bgSel) =>
+    page.evaluate(
+      ([fgSel, bgSel]) => {
+        const lum = (rgb) => {
+          const c = rgb.match(/[\d.]+/g).map(Number).slice(0, 3).map((v) => {
+            v /= 255;
+            return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+          });
+          return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+        };
+        const bgOf = (el) => {
+          while (el && el !== document.documentElement) {
+            const bg = getComputedStyle(el).backgroundColor;
+            if (bg && !bg.includes("rgba(0, 0, 0, 0)") && !bg.includes("rgba(0,0,0,0)") && bg !== "transparent") return bg;
+            el = el.parentElement;
+          }
+          return getComputedStyle(document.body).backgroundColor;
+        };
+        const fg = document.querySelector(fgSel);
+        const bgEl = document.querySelector(bgSel);
+        const L1 = lum(getComputedStyle(fg).color);
+        const L2 = lum(bgOf(bgEl));
+        const [hi, lo] = L1 > L2 ? [L1, L2] : [L2, L1];
+        return (hi + 0.05) / (lo + 0.05);
+      },
+      [fgSel, bgSel],
+    );
+  const pairs = [
+    [".hero-copy > p", ".landing-page"],
+    [".hero-copy h1", ".landing-page"],
+    [".site-header .nav-link", ".site-header"],
+    [".hero-actions .action-dark", ".hero-actions .action-dark"],
+    [".flow-bottom span", ".flow-bottom"],
+    [".footer-grid > div > a:not(.brand)", ".site-footer"],
+    [".team-details > span", ".team-section"],
+  ];
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const themeBtn = (label) => page.getByRole("button", { name: `${label} theme` }).first();
+  await themeBtn("Dark").click();
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), "dark");
+  checks++;
+  for (const [fg, bg] of pairs) {
+    const r = await ratio(fg, bg);
+    assert.ok(r >= 4.5, `dark ${fg} vs ${bg}: ${r.toFixed(2)}`);
+  }
+  checks++;
+  await themeBtn("Light").click();
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), "light");
+  for (const [fg, bg] of pairs) {
+    const r = await ratio(fg, bg);
+    assert.ok(r >= 4.5, `light ${fg} vs ${bg}: ${r.toFixed(2)}`);
+  }
+  checks++;
+  await themeBtn("System").click();
   for (const anchor of await page.locator('a[target="_blank"]').all()) {
     assert.ok((await anchor.getAttribute("rel")).includes("noopener"));
   }

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /sign-in
+Disallow: /sign-up
+
+# Domain PROVISIONAL — mirror VITE_SITE_URL once the primary domain is confirmed.
+Sitemap: https://404hubspot.co.ke/sitemap.xml

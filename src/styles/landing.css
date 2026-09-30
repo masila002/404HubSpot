@@ -947,7 +947,7 @@
 }
 .process-section {
   border-block: 1px solid var(--site-border);
-  background: #eff2eb;
+  background: var(--site-strip, #eff2eb);
 }
 .process-grid {
   display: grid;
@@ -1786,4 +1786,100 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .service-card::after { display: none; }
+}
+
+/* ---- Light / Dark / System themes (2026-09-30) ----
+   Contrast rule: every text color is paired with its background here.
+   Fixed pairs (--site-dark/--site-inverse, illustration cards) never change;
+   theme-relative roles remap under [data-theme="dark"]. */
+:root {
+  --site-strip: #eff2eb;
+}
+[data-theme="dark"] {
+  --site-canvas: #0d1411;
+  --site-surface: #14201b;
+  --site-ink: #edf3ea;
+  --site-muted: #a9bdb1;
+  --site-border: #2b3a33;
+  --site-brand: #93d4ae;
+  --site-mint: #1a2721;
+  --site-sand: #242b22;
+  --site-lilac: #232636;
+  --site-rose: #2b2320;
+  --site-strip: #121c17;
+  --site-shadow: 0 8px 24px #00000055;
+}
+html { background: var(--site-canvas); }
+body { background: var(--site-canvas); color: var(--site-ink); }
+
+/* Fixed illustration palette: mock product cards stay light in both themes
+   so their internal ink/muted/brand text always passes. */
+.browser-preview { color: #203b36; }
+.browser-bar { color: #5d6c66; }
+.mock-site-nav { color: #5d6c66; }
+.mock-site-nav b { color: #203b36; }
+.mock-site-content .mini-label { color: #5d6c66; }
+.mock-site-content strong { color: #203b36; }
+.mock-site-content em { color: #246653; }
+.mock-site-footer { color: #5d6c66; border-top-color: #dfe5df; }
+.lesson-window { color: #203b36; }
+.lesson-top { color: #5d6c66; border-bottom-color: #dfe5df; }
+.lesson-code i { color: #5d6c66; }
+.lesson-output { color: #203b36; border-top-color: #dfe5df; }
+.lesson-output > span { color: #5d6c66; }
+.payment-preview { background: #fff; color: #203b36; }
+.payment-preview div > span { color: #5d6c66; }
+.hero-art { background: #e9eee4; border: 1px solid var(--site-border); }
+[data-theme="dark"] .hero-art { background: #182420; }
+.preview-coordinate, .preview-caption { color: var(--site-muted); }
+.flow-top { color: var(--site-ink); border-color: #64796b; }
+.flow-connector { color: #a3b99c; }
+/* Screenshot fix (bugs/UI-VISIBILITY.png): flow-bottom never declared text
+   color, so dark ink sat on a dark panel. Fixed pair, both themes. */
+.flow-bottom { background: #314d42; border-color: #64796b; color: #f8faf4; }
+.flow-bottom > svg:last-child { color: var(--site-lime); }
+.flow-center { background: #f8faf4; color: #203b36; }
+.flow-center > span:nth-last-child(2) { border-color: #dfe5df; }
+.learning-sticker { color: #203b36; }
+.team-number { background: var(--site-surface); color: var(--site-muted); border: 1px solid var(--site-border); }
+.action-light { color: #203b36; }
+.price-card.featured .action-light { color: #203b36; }
+.badge-pop { color: #203b36; }
+.language-pills span { border-color: var(--site-border); color: var(--site-muted); }
+.step-top { border-bottom-color: var(--site-border); }
+.step-top span { color: var(--site-muted); }
+.form-row input, .form-row select, .form-row textarea {
+  background: var(--site-surface);
+  color: var(--site-ink);
+  border-color: var(--site-border);
+}
+.form-row input::placeholder, .form-row textarea::placeholder { color: var(--site-muted); opacity: 1; }
+.menu-toggle { color: var(--site-ink); background: transparent; }
+
+/* Theme toggle: segmented Light / System / Dark */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--site-border);
+  border-radius: 40px;
+  background: var(--site-surface);
+}
+.theme-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--site-muted);
+  cursor: pointer;
+}
+.theme-btn svg { width: 17px; height: 17px; }
+.theme-btn:hover { color: var(--site-brand); }
+.theme-btn.is-active { background: var(--site-mint); color: var(--site-brand); border-color: var(--site-border); }
+@media (max-width: 999px) {
+  .theme-toggle { margin: 8px 0 0; align-self: flex-start; }
 }

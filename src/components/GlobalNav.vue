@@ -69,6 +69,7 @@
         <router-link class="nav-link" to="/contact">Contact</router-link>
         <router-link v-if="!clerkReady" class="nav-link" to="/sign-in">Sign in</router-link>
         <router-link v-else class="nav-link" to="/sign-in">Account</router-link>
+        <ThemeToggle />
         <a
           class="action action-dark nav-cta"
           :href="
@@ -86,10 +87,11 @@
 </template>
 <script>
 import UiIcon from "./UiIcon.vue";
+import ThemeToggle from "./ThemeToggle.vue";
 import { services, whatsappUrl } from "../data/site";
 export default {
   name: "GlobalNav",
-  components: { UiIcon },
+  components: { UiIcon, ThemeToggle },
   computed: {
     clerkReady() {
       return Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
