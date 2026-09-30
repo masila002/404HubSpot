@@ -4,13 +4,13 @@ Branch: `feature/web/02-unified-site-revamp`. Base: `origin/main` `cb5d263`.
 Authorization: user approved bundling specs 02–09, 12, 33 plus new Clerk/GSAP/Lottie/font/pricing in ONE branch as an exception to one-spec rule. Recorded 2026-09-30 via session questions (bundled revamp, demo Clerk until key, Glory defaults, Fraunces+Inter).
 
 ## Outcome
-All 9 original routes + `/sign-in` + `/sign-up` share the landing executive system (tokens, cards, heroes, CTAs). 5-person team. Responsive 360–1920. GSAP scroll/hero reveals with reduced-motion guard. Lottie placeholders in `public/lottie/`. Clerk demo shell until `VITE_CLERK_PUBLISHABLE_KEY` is set.
+All 9 original routes + `/sign-in` + `/sign-up` share the landing executive system (tokens, cards, heroes, CTAs). 5-person team. Responsive 360–1920. GSAP scroll/hero reveals with reduced-motion guard. Lottie placeholders in `public/lottie/`. Clerk demo shell until `VITE_CLERK_PUBLISHABLE_KEY` is set. 2026-09-30 PM: key LIVE in `.env.local` — path-routed forms render, nav uses `Show`+`UserButton`; env files stripped to plain `KEY=` lines per owner order.
 
 ## What changed (runtime)
 - Fonts: Fraunces display + Inter body (index.html, tailwind, landing.css `:root`).
 - Data: `src/data/site.js` adds `team` (5) + `pricing` bands; fixes LanguageCard phone to shared `whatsappUrl`.
 - Motion: `gsap@3.15.0`, `lottie-web@5.13.0` (npm 2026-09-30); `src/composables/useReveal.js` (gsap.context + ScrollTrigger + cleanup + reduced-motion); `LottiePlayer.vue`, `PageHero.vue`.
-- Auth: `@clerk/vue@2.5.7` (npm 2026-09-30); `main.js` registers clerkPlugin only when key exists; `/sign-in`, `/sign-up` landing-styled + demo shell; nav links to sign-in; `.env.example` documents key.
+- Auth: `@clerk/vue@2.5.7` (npm 2026-09-30); LIVE with owner key: real path-routed forms verified rendering, `Show` when=signed-out/in + `UserButton` in nav. Lottie JSONs moved to `src/assets/lottie/` (Vite forbids public/ JS imports).
 - Pages: Home (+reveal), Web/Software/Mobile/M-Pesa/Graphics, ProgrammingClasses, OurProcess, Contact rewritten to landing classes; pricing from shared data.
 - Team detail: `/team/:slug` pages (GitHub-verified bios, stats, repos, contact); cards link to profiles; App.vue GSAP route transition; magnetic CTAs; card sheen hover.
 - Checks: `scripts/verify-ui.cjs` covers 11 routes × 5 widths (55) + 5 team cards.

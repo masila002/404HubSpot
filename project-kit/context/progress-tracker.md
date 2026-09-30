@@ -70,7 +70,7 @@ Official documentation fallback used because no Context7 MCP tool was available;
 
 ## 5. Open limits and next action
 
-02b review/merge: OPEN. Owner must confirm: Glory Kinya photo/bio/links; Frank “Fullstack Developer & Designer” and Don “AI Engineer & System Architect” titles; provisional KES bands; Clerk publishable key + Brevo sender/key/inbox + Meet ID. Production deployment not run.
+02b review/merge: OPEN. Owner must confirm: Glory Kinya photo/bio/links; Frank “Fullstack Developer & Designer” and Don “AI Engineer & System Architect” titles; provisional KES bands; Brevo sender/key/inbox + Meet ID. Clerk publishable key LIVE (verified rendering 2026-09-30); `CLERK_SECRET_KEY` + `clerk auth login`/`clerk link` remain for backend (spec 19). Production deployment not run.
 Existing Contact form/meeting placeholders remain (demo until IDs set); LanguageCard phone mismatch FIXED in 02b via shared whatsappUrl.
 External social destinations not live-verified; manual screen-reader/Firefox/WebKit checks not run.
 No backend, database, MCP, AI, retention, security or deployment tests are claimed as passing.

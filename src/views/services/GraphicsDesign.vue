@@ -80,7 +80,7 @@ import LottiePlayer from "../../components/LottiePlayer.vue";
 import UiIcon from "../../components/UiIcon.vue";
 import { pricing, whatsappUrl } from "../../data/site";
 import { useReveal } from "../../composables/useReveal";
-import orbit from "../../../public/lottie/orbit.json";
+import orbit from "../../assets/lottie/orbit.json";
 
 export default {
   name: "GraphicsDesign",

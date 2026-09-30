@@ -13,7 +13,7 @@
 | Pricing | src/data/site.js pricing + price-card styles; service views | Provisional KES bands (owner-review); featured dark card; WhatsApp CTA |
 | Reveal | src/composables/useReveal.js (gsap 3.15 + ScrollTrigger) | data-reveal/data-hero entrances; matchMedia + reduced-motion; ctx.revert cleanup |
 | LottiePlayer | src/components/LottiePlayer.vue (lottie-web 5.13) | Local `public/lottie/*.json` placeholders; reduced-motion skips; destroy on unmount |
-| Auth shell | src/views/auth/SignIn.vue + SignUp.vue (@clerk/vue 2.5.7) | Landing-styled Clerk path-routing; demo shell without key; nav sign-in link |
+| Auth shell | src/views/auth/SignIn.vue + SignUp.vue (@clerk/vue 2.5.7) | LIVE 2026-09-30: owner added `VITE_CLERK_PUBLISHABLE_KEY`; path-routed Clerk forms render, demo shell retired. Nav uses `Show` + `UserButton` (Vue has no SignedIn/SignedOut). `CLERK_SECRET_KEY` still needed server-side (spec 19). |
 | Team data | src/data/site.js team; Teamsection | Five members; Glory Kinya default (photo/bio/links TBD); initials fallback |
 | TeamDetail | src/views/TeamDetail.vue; `/team/:slug` | GitHub-verified bio/stats/repos; prev/next; cards link out, details on page |
 | ThemeToggle | src/components/ThemeToggle.vue; GlobalNav | Light/System/Dark segmented control; localStorage + OS match; pre-paint init; theme-color sync |
