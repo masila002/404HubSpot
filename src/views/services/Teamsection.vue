@@ -22,12 +22,13 @@
           <article class="team-card">
             <div class="team-portrait">
               <img
-                v-if="member.image"
-                :src="member.image"
+                v-if="portraitSrc(member)"
+                :src="portraitSrc(member)"
                 :alt="member.name"
                 loading="lazy"
                 width="400"
                 height="440"
+                @error="dropPortrait(member)"
               /><span
                 v-else
                 class="portrait-initials"
@@ -44,7 +45,6 @@
               <h3>{{ member.name }}</h3>
               <span>{{ member.role }}</span>
               <p>{{ member.focus }}</p>
-              <span class="team-more">View profile <span aria-hidden="true">→</span></span>
             </div>
           </article>
         </router-link>
@@ -58,7 +58,20 @@ import { team } from "../../data/site";
 export default {
   name: "Teamsection",
   data() {
-    return { teamMembers: team };
+    return { teamMembers: team, portraitStage: {} };
+  },
+  methods: {
+    // Never blank: local photo → GitHub avatar → initials.
+    portraitSrc(member) {
+      const candidates = [member.image, member.avatar].filter(Boolean);
+      return candidates[Math.min(this.portraitStage[member.id] || 0, candidates.length)] || null;
+    },
+    dropPortrait(member) {
+      this.portraitStage = {
+        ...this.portraitStage,
+        [member.id]: (this.portraitStage[member.id] || 0) + 1,
+      };
+    },
   },
 };
 </script>

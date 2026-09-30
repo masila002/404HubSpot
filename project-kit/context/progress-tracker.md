@@ -6,13 +6,47 @@ Current: 01 merged to `main` (`cb5d263`); 02b unified revamp IN PROGRESS on `fea
 Next eligible after user review/merge: 02 content truth confirmation (prices/team/keys), then remaining staged specs one-by-one.
 One spec/branch/PR normally; 02b is a documented single exception — do not batch further without approval.
 
-## 1. Status board
+## 1. Status board — every feature, one by one, no batching
 
-| ID | Feature | State | Evidence | Operator gates |
+| ID | Feature | State | Evidence | Open gates |
 |---|---|---|---|---|
-| 01 | Landing/shared shell redesign + workflow/architecture planning | READY FOR REVIEW | 57 browser checks; build; 193 links; 23 reference hashes | Visual review OPEN; merge OPEN; deployment NOT RUN |
-| 02–33 | Remaining portfolio and staged full-stack features | PLANNED | Detailed specs and dependency graph | Per-spec content/provider/identity/budget gates OPEN |
-| 02b | Unified site revamp (all pages + motion + Clerk shell + pricing) | IN PROGRESS | Branch `feature/web/02-unified-site-revamp`; spec 02-unified-site-revamp.md | Visual review OPEN; owner price/team/key confirmation OPEN |
+| 01 | Landing/shared shell redesign + workflow/architecture planning | MERGED | main `cb5d263`; 57 checks green at merge | Done |
+| 02b | Unified site revamp (owner-approved bundle exception) | IN REVIEW | Branch `feature/web/02-unified-site-revamp`; 75 checks green | Visual review OPEN; owner price/team/key/domain confirmation OPEN |
+| 02 | Content, brand and asset truth | PLANNED | Depends 01 | Copy/assets/provider gates OPEN |
+| 03 | Web development service redesign | PLANNED | Depends 01,02 | — |
+| 04 | Software development service redesign | PLANNED | Depends 02,03 | — |
+| 05 | Mobile app development service redesign | PLANNED | Depends 02,03 | — |
+| 06 | M-Pesa integration service redesign | PLANNED | Depends 02,03 | — |
+| 07 | Programming classes and learning paths | PLANNED | Depends 01,02 | Class format/fee gate OPEN |
+| 08 | Contact and inquiry experience | PLANNED | Depends 01,02 | Form/meeting config gate OPEN |
+| 09 | Delivery process and collaboration page | PLANNED | Depends 01,02 | — |
+| 10 | Portfolio discovery and filtering | PLANNED | Depends 01,02 | Claims/permission gate OPEN |
+| 11 | Evidence-backed case study pages | PLANNED | Depends 10 | Claims/permission gate OPEN |
+| 12 | Company story and team profiles | PLANNED | Depends 01,02 | Portrait/profile gate OPEN |
+| 13 | Sitewide accessibility and navigation completion | PLANNED | Depends 03,04,05,06,07,08,09,10,11,12,33 | — |
+| 14 | Search metadata, structured data and sharing | PLANNED | Depends 02,10,11,12 | Domain gate OPEN |
+| 15 | Performance budgets and media delivery | PLANNED | Depends 03,04,05,06,07,08,09,10,11,12,14,33 | — |
+| 16 | Reproducible checks and branch previews | PLANNED | Depends 01 | Hosting/budget/owner gate OPEN |
+| 17 | Backend API foundation and contracts | PLANNED | Depends 02,16 | Hosting gate OPEN |
+| 18 | Relational data foundation and migrations | PLANNED | Depends 17 | — |
+| 19 | Durable inquiry capture and notifications | PLANNED | Depends 08,17,18 | Brevo sender/key/inbox gate OPEN |
+| 20 | Staff identity and authorization | PLANNED | Depends 17,18 | Identity gate OPEN |
+| 21 | Staff inquiry workspace | PLANNED | Depends 19,20 | — |
+| 22 | Content editing and controlled publishing | PLANNED | Depends 10,11,12,18,20 | — |
+| 23 | Managed portfolio media | PLANNED | Depends 18,20,22 | — |
+| 24 | Private MCP read tools and resources | PLANNED | Depends 17,20,21,22 | Client/transport gate OPEN |
+| 25 | MCP proposed writes with explicit approval | PLANNED | Depends 24 | — |
+| 26 | Published knowledge retrieval for AI | PLANNED | Depends 22 | Provider/budget/data gate OPEN |
+| 27 | Staff inquiry drafting assistant | PLANNED | Depends 21,26 | — |
+| 28 | Optional public FAQ assistant pilot | PLANNED | Depends 13,26,27 | Demand gate OPEN |
+| 29 | Inquiry retention, export and deletion operations | PLANNED | Depends 19,20,21 | Privacy/consent gate OPEN |
+| 30 | Full-stack deployment, backups and recovery | PLANNED | Depends 17,18,19,20,29 | — |
+| 31 | Operational visibility and AI/MCP cost controls | PLANNED | Depends 19,24,27,30 | — |
+| 32 | Scaling and extraction decision review | PLANNED | Depends 15,30,31 | May conclude no new runtime needed |
+| 33 | Graphics design service redesign | PLANNED | Depends 02,03 | — |
+| 34 | Customer accounts & password auth (Clerk) | PLANNED | Depends 17,18,20 | App linked at build; secret-key gate OPEN |
+
+Rule: implement strictly in dependency order, one spec per branch. 02b is the single documented exception.
 
 ## 2. Delivered scope
 
@@ -56,7 +90,13 @@ Per-file hashes: docs/design/evidence/source-snapshot.json; the feature commit c
 - GitHub verify 2026-09-30 (api.github.com): DonArtkins 69 repos/63 followers; masila002 35/21; kiki-glow 46/10 + portfolio URL; Ericnjuki254 6/20; chemii933 10/14.
 - Favicon set (owner-supplied, public/favicon/) moved to public/ root so Vercel serves /favicon.ico, /apple-touch-icon.png, /site.webmanifest; manifest rebranded 404HubSpot; vercel.json SPA rewrites added. Per-route SEO via src/lib/seo.js (title/desc/canonical/OG/Twitter, auth noindex, JSON-LD); sitemap.xml + robots.txt; domain provisional (VITE_SITE_URL).
 - Visibility/theme (bugs/UI-VISIBILITY.png): flow-bottom pair declared (#f8faf4 on #314d42); full theme token remap + fixed illustration palette; `verify-ui.cjs` asserts 7 pairs ≥ 4.5 in light AND dark via the real toggle UI. Measured — light min 5.22, dark min 8.80.
+- Auth RETIRED 2026-09-30 per owner order: nav link, plugin, routes, pages, dep removed; `.env` Clerk keys removed; plan + lessons in spec 34 (fullstack phase).
+- Contact + newsletter are BACKEND (owner order 2026-09-30): runtime Brevo code removed (`brevo.js`, `NewsletterForm`, `ResultModal`); Contact validates + hands prefilled inquiries to WhatsApp. Plan lives in spec 19 + `docs/integrations/BREVO*.md` + `emails/` templates.
+- Courses from GitHub evidence: 12 tracks in `src/data/courses.js`, `/classes/:slug` detail pages (syllabus, mentor, repo evidence, prev/next); class index links every track. All 6 services cross-linked on every service detail page. 404 page with Lottie + actions, noindex.
+- 404 page (`/:pathMatch(.*)*`): landing-styled lost-and-found with Lottie (`src/assets/lottie/notfound.json`), action buttons + popular destinations, noindex.
 - Pricing bands provisional (search integration down, no Context7) — owner confirmation gates quotes.
+- Evidence refresh 2026-09-30: `docs/design/evidence/landing-{360,768,1024,1440,1920}.png` regenerated; `npm run build` PASS (69 modules, 0 errors; CSS 38.54 kB / JS 325.19 kB + lottie 307.91 kB); `git diff --check` PASS.
+- Owner-ordered addition 2026-09-30: vendored external IDE/agent skill packs under `.agents/skills/` (clerk-testing, clerk-vue-patterns, gsap-*, vue; 23 files, ~140K, docs/templates only, no secrets) per explicit `COMMIT AND PUSH THAT ONE TOO`. Not part of 02b spec scope; recorded here as deviation with owner approval.
 
 ## 4. Contract synchronization and deviations
 

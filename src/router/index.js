@@ -8,9 +8,9 @@ import SoftwareDevelopment from '../views/services/SoftwareDevelopment.vue'
 import MobileApps from '../views/services/MobileApps.vue'
 import MPesaIntegration from '../views/services/MPesaIntegration.vue'
 import GraphicsDesign from '../views/services/GraphicsDesign.vue'
-import SignIn from '../views/auth/SignIn.vue'
-import SignUp from '../views/auth/SignUp.vue'
 import TeamDetail from '../views/TeamDetail.vue'
+import NotFound from '../views/NotFound.vue'
+import CourseDetail from '../views/CourseDetail.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -22,9 +22,9 @@ const routes = [
   { path: '/services/mobile-apps', name: 'MobileApps', component: MobileApps },
   { path: '/services/m-pesa-integration', name: 'MPesaIntegration', component: MPesaIntegration },
   { path: '/services/graphics-design', name: 'GraphicsDesign', component: GraphicsDesign },
-  { path: '/sign-in', name: 'SignIn', component: SignIn },
-  { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/team/:slug', name: 'TeamDetail', component: TeamDetail },
+  { path: '/classes/:slug', name: 'CourseDetail', component: CourseDetail },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
 const router = createRouter({
@@ -40,7 +40,8 @@ const router = createRouter({
 router.afterEach(async (to) => {
   const { applySeo } = await import("../lib/seo");
   const { team } = await import("../data/site");
-  applySeo(to, team);
+  const { courses } = await import("../data/courses");
+  applySeo(to, team, courses);
 });
 
 export default router

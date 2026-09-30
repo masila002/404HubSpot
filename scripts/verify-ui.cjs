@@ -14,9 +14,9 @@ const routes = [
   "/services/mobile-apps",
   "/services/m-pesa-integration",
   "/services/graphics-design",
-  "/sign-in",
-  "/sign-up",
   "/team/don-artkins",
+  "/classes/python-foundations",
+  "/no-such-page-404-check",
 ];
 (async () => {
   const browser = await chromium.launch({

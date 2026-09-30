@@ -6,8 +6,7 @@
         <router-link to="/#team" class="text-action profile-back"><UiIcon name="arrow" class="flip" /> Back to team</router-link>
         <div class="profile-head">
           <div class="team-portrait profile-portrait">
-            <img v-if="showAvatar && member.image" :src="member.image" :alt="member.name" width="400" height="440" @error="showAvatar = false" />
-            <img v-else-if="showAvatar" :src="member.avatar" :alt="`${member.name} GitHub avatar`" width="400" height="440" loading="lazy" @error="showAvatar = false" />
+            <img v-if="portraitSrc" :src="portraitSrc" :alt="member.name" width="400" height="440" loading="lazy" @error="stage++" />
             <span v-else class="portrait-initials" aria-hidden="true">{{ initials }}</span>
             <span class="team-number">0{{ member.id }}</span>
           </div>
@@ -86,7 +85,7 @@
   </div>
 </template>
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
 import GlobalNav from "../components/GlobalNav.vue";
 import Footer from "../components/Footer.vue";
@@ -111,8 +110,20 @@ export default {
     const next = computed(() =>
       idx.value >= 0 && idx.value < team.length - 1 ? team[idx.value + 1] : null,
     );
-    const showAvatar = ref(true);
-    return { root, member, initials, prev, next, showAvatar };
+    // Never blank: local photo → GitHub avatar → initials; reset per profile.
+    const stage = ref(0);
+    const portraitSrc = computed(() => {
+      if (!member.value) return null;
+      const candidates = [member.value.image, member.value.avatar].filter(Boolean);
+      return candidates[Math.min(stage.value, candidates.length)] || null;
+    });
+    watch(
+      () => route.params.slug,
+      () => {
+        stage.value = 0;
+      },
+    );
+    return { root, member, initials, prev, next, stage, portraitSrc };
   },
   methods: { whatsappUrl },
 };

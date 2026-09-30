@@ -5,10 +5,10 @@
       <PageHero
         kicker="LEARN — FROM CURIOUS TO CAPABLE"
         title="Don't just use tech. <em>Learn to create it.</em>"
-        lede="Live Google Meet classes, 1-on-1 mentorship and portfolio projects — mentored by working developers."
+        lede="Twelve tracks taught from real shipped code. Live Google Meet classes, 1-on-1 mentorship, portfolio outcomes."
       >
         <template #actions>
-          <a :href="whatsappUrl(`Hello 404HubSpot, I'd like to secure a class spot.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Secure spot on WhatsApp <UiIcon name="diagonal" /></a>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I'd like course advice.`)" target="_blank" rel="noopener noreferrer" class="action action-dark" data-magnetic>Course advice <UiIcon name="diagonal" /></a>
           <router-link to="/contact" class="text-action">Ask about schedules <UiIcon name="arrow" /></router-link>
         </template>
         <template #art>
@@ -25,11 +25,32 @@
 
       <section class="section-space site-container" data-reveal>
         <div class="section-heading">
-          <div><span class="eyebrow">01 / PATHS & FEES</span><h2>Pick your track.<br /><span class="muted-heading">Build week one.</span></h2></div>
-          <p>Per-level Kenya bands (owner-review). Schedules and availability confirm on WhatsApp.</p>
+          <div><span class="eyebrow">01 / TWELVE TRACKS</span><h2>Pick your track.<br /><span class="muted-heading">Build week one.</span></h2></div>
+          <p>Per-level Kenya bands (owner-review). Open a track for syllabus, mentor and GitHub evidence.</p>
         </div>
-        <div class="services-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
-          <LanguageCard v-for="l in languages" :key="l.id" :language="l" />
+        <div class="services-grid courses-grid">
+          <router-link
+            v-for="c in courses"
+            :key="c.id"
+            :to="`/classes/${c.slug}`"
+            class="team-card-link"
+            :aria-label="`${c.name} course details`"
+            data-reveal
+          >
+            <article class="service-card tone-sand">
+              <div class="service-card-top">
+                <span class="service-icon"><UiIcon name="learn" /></span
+                ><span class="card-index">/ {{ String(c.id).padStart(2, "0") }}</span>
+              </div>
+              <h3>{{ c.name }} <UiIcon name="diagonal" /></h3>
+              <p>{{ c.tagline }} — {{ c.level }} · {{ c.fee }}</p>
+              <div class="service-card-bottom">
+                <div class="tag-list">
+                  <span v-for="t in c.track" :key="t">{{ t }}</span>
+                </div>
+              </div>
+            </article>
+          </router-link>
         </div>
       </section>
 
@@ -42,7 +63,7 @@
             <div><h3>1-on-1 Mentorship</h3><p style="color:var(--site-muted);font-size:12px;margin-top:8px">Guidance from people who ship daily.</p></div>
             <div><h3>Portfolio Projects</h3><p style="color:var(--site-muted);font-size:12px;margin-top:8px">Leave with work you can show.</p></div>
           </div>
-          <a :href="whatsappUrl(`Hello 404HubSpot, I'd like class details and schedule.`)" target="_blank" rel="noopener noreferrer" class="action action-dark" style="margin-top:22px">Ask on WhatsApp <UiIcon name="diagonal" /></a>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I'd like class details and schedule.`)" target="_blank" rel="noopener noreferrer" class="action action-dark" style="margin-top:22px" data-magnetic>Ask on WhatsApp <UiIcon name="diagonal" /></a>
         </div>
       </section>
     </main>
@@ -55,20 +76,20 @@ import GlobalNav from "../components/GlobalNav.vue";
 import Footer from "../components/Footer.vue";
 import PageHero from "../components/PageHero.vue";
 import LottiePlayer from "../components/LottiePlayer.vue";
-import LanguageCard from "../components/LanguageCard.vue";
 import UiIcon from "../components/UiIcon.vue";
-import { pricing, whatsappUrl } from "../data/site";
-import { useReveal } from "../composables/useReveal";
+import { courses } from "../data/courses";
+import { whatsappUrl } from "../data/site";
+import { useReveal, useMagnetic } from "../composables/useReveal";
 import spark from "../assets/lottie/spark.json";
 
 export default {
   name: "ProgrammingClasses",
-  components: { GlobalNav, Footer, PageHero, LottiePlayer, LanguageCard, UiIcon },
+  components: { GlobalNav, Footer, PageHero, LottiePlayer, UiIcon },
   setup() {
     const root = ref(null);
     useReveal(root);
-    const languages = pricing.classes.map((c, i) => ({ id: i + 1, name: c.name, description: c.blurb, range: c.range, cta: c.cta }));
-    return { root, languages, spark };
+    useMagnetic(root);
+    return { root, courses, spark };
   },
   methods: { whatsappUrl },
 };

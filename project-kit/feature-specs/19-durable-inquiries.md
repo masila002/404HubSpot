@@ -27,6 +27,21 @@ Owner/consumer documents update together; do not introduce unrelated layer scaff
 2. Commit inquiry and outbox atomically; return receipt only after commit and hide internal details.
 3. Deliver notifications through a provider adapter with bounded retries, deduplication and dead-letter visibility.
 4. Switch the contact adapter behind explicit environment configuration; never double-send to Formspree and backend.
+5. Newsletter (same owner): validated POST /api/v1/newsletter accepting
+   `{ email, source }`; upsert Brevo contact (double opt-in); send the
+   welcome template with a real one-click `unsubscribeUrl`.
+6. Mail provider is Brevo (owner order 2026-09-30): `POST
+   https://api.brevo.com/v3/smtp/email` with `api-key` header; HTML bodies
+   are `emails/inquiry-internal.html`, `emails/inquiry-autoreply.html` and
+   `emails/newsletter-welcome.html` (HubSpot-branded, logo via GitHub raw);
+   full dashboard/API setup in `docs/integrations/BREVO-SETUP.md`, adapted
+   from `research/Brevo-Email-Setup-Guide.pdf`. Key server-side only.
+7. Frontend contract (implement in THIS spec's branch, not earlier): Contact
+   swaps its WhatsApp handoff for `POST /api/v1/inquiries` JSON
+   (`src/lib/brevo.js` shape, kept in git history at `3c14001`), newsletter
+   forms POST `/api/v1/newsletter`; success/error Lottie modals
+   (`ResultModal`, same history) render on receipt/failure — never claim
+   delivery the server didn't confirm.
 
 ## Data, contracts and permissions
 

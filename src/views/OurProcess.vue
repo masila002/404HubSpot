@@ -65,7 +65,7 @@ import Footer from "../components/Footer.vue";
 import PageHero from "../components/PageHero.vue";
 import UiIcon from "../components/UiIcon.vue";
 import { whatsappUrl } from "../data/site";
-import { useReveal } from "../composables/useReveal";
+import { useReveal, useMagnetic } from "../composables/useReveal";
 
 export default {
   name: "OurProcess",
@@ -73,6 +73,7 @@ export default {
   setup() {
     const root = ref(null);
     useReveal(root);
+    useMagnetic(root);
     return {
       root,
       steps: [

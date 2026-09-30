@@ -86,7 +86,17 @@ valid. Lose no file, compromise neither structure.
 
 ## Working rules
 
-1. Plan before code: reviewable spec plus binary acceptance criteria first.
+0. NEVER implement in the default branch. The default branch (`main`) is
+   merge-only: the agent must always be on a freshly cut
+   `feature/<area>/<NN>-<slug>` (or `fix/`, `docs/`) branch taken from the
+   fetched default tip before touching any implementation file. If the
+   current branch IS the default branch, stop and cut the feature branch
+   first — no exceptions, no "quick fixes" straight to main.
+1. ALWAYS read `project-kit/context/progress-tracker.md` first, every run.
+   Section 0 names the ONE next spec; the status board lists EVERY feature
+   one by one with its state — never batch, never skip, never reorder
+   without explicit owner approval.
+2. Plan before code: reviewable spec plus binary acceptance criteria first.
 2. One spec, one branch, one review: `feature/<area>/<NN>-<slug>` from the
    fetched default branch tip (`fix/` for bugs, `docs/` for planning-only).
 3. Implement exactly what the spec says. Runtime files (manifests,
@@ -94,10 +104,15 @@ valid. Lose no file, compromise neither structure.
    spec orders them, using that spec's commands — never speculatively.
 4. Verify with this project's own commands (recorded in the spec/tracker),
    and report exact output: pass/fail/skip counts, revision, limits.
-5. Update the owning tracker plus every affected tracker in the same branch.
-6. No destructive commands without explicit approval. Commands needing
+5. ALWAYS update the progress tracker BEFORE push: set the owning spec's
+   row to its true state plus every affected tracker, with verification
+   evidence, in the same branch. Pushing with a stale tracker is forbidden.
+6. Then commit and push ONLY the current feature branch to GitHub
+   (`git push origin <branch>`). Never push the default branch from an
+   agent session; merging is the owner's decision.
+7. No destructive commands without explicit approval. Commands needing
    elevated rights: print them, ask, and wait.
-7. Report when done: what changed, verification evidence, open items,
+8. Report when done: what changed, verification evidence, open items,
    and anything needed from the user as numbered copy-run steps. Then wait
    for explicit approval before the next spec.
 
