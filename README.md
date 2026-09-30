@@ -6,7 +6,7 @@ A professional, SEO-ready static website built with Vue.js and Tailwind CSS, opt
 
 - 🚀 **Fast & Mobile-Friendly**: Optimized for speed and mobile devices
 - 📱 **WhatsApp Integration**: Custom URL parameters for lead tracking
-- 🎨 **Modern Design**: Soft Peach and Dark Teal color scheme
+- 🎨 **Modern Design**: Warm light landing page, dark teal actions, responsive service cards
 - 🔍 **SEO Optimized**: Proper meta tags, semantic HTML, and alt text
 - 📧 **Contact Forms**: Formspree integration for email lead capture
 
@@ -72,6 +72,9 @@ A professional, SEO-ready static website built with Vue.js and Tailwind CSS, opt
 ## Customization
 
 ### Colors
+The landing page and shared navigation/footer use `src/styles/landing.css`; see
+`project-kit/context/ui-tokens.md`. Legacy detail pages still use the original Tailwind palette.
+
 Edit `tailwind.config.js` to adjust the color scheme:
 - `peach`: Soft Peach color
 - `teal`: Dark Teal color
@@ -91,3 +94,18 @@ All WhatsApp links use custom URL parameters. Update the `whatsappText` values i
 ## License
 
 © 2024 404HubSpot. All rights reserved.
+
+
+## Project workflow and redesign roadmap
+
+Start with [AGENTS.md](AGENTS.md) and [the documentation map](docs/README.md).
+The baseline workflow was attached through its existing-project generator; it preserved existing
+source, manifests, lockfile and hosting configuration. Runtime changes implement feature 01 only.
+
+- [33 feature specs](project-kit/feature-specs/README.md) and [execution roadmap](docs/planning/IMPLEMENTATION-ROADMAP.md)
+- [Full-stack architecture](docs/architecture/SYSTEM-DESIGN.md): frontend, backend/data, AI, MCP and infrastructure staged by need
+- [Design system and editable board](docs/design/MASTER-DESIGN-SYSTEM.md), [copied inspiration](inspo/README.md)
+- [Delivery tracker](project-kit/context/progress-tracker.md) and [known issues](bugs/INDEX.md)
+
+One feature per branch from current GitHub main. Future backend/AI/MCP and portfolio-detail
+features are planned, not shipped. Mobile and microservices require evidence before adoption.

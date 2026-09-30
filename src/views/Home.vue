@@ -1,214 +1,290 @@
 <template>
-  <div class="min-h-screen">
+  <div class="landing-page">
     <GlobalNav />
-
-    <!-- Hero Section -->
-    <section class="bg-white py-20 md:py-32">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Expert Digital Solutions & Tech Training
+    <main id="main-content" tabindex="-1">
+      <section class="hero-section site-container">
+        <div class="hero-copy">
+          <span class="hero-kicker"
+            ><span class="status-dot"></span> YOUR NEXT CHAPTER STARTS
+            HERE</span
+          >
+          <h1>
+            Big ideas.<br />Built
+            <span class="hero-word"
+              >beautifully.<svg
+                viewBox="0 0 420 18"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 12C105 2 279 0 416 10M40 16C153 8 285 8 375 14"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                /></svg
+            ></span>
           </h1>
-          <p class="text-xl md:text-2xl text-gray-700 mb-8">
-            From high-performance Web Apps and M-Pesa integrations to
-            professional Programming Classes. We build. You grow.
+          <p>
+            We turn your vision into websites, apps, and digital experiences
+            that move your business forward. And teach you the skills to build
+            your own.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#services" class="btn-primary bg-dark-teal text-white">
-              View Services
-            </a>
-            <router-link to="/programming-classes" class="btn-secondary">
-              Join a Class
-            </router-link>
+          <div class="hero-actions">
+            <router-link to="/contact" class="action action-dark"
+              >Let’s build something <UiIcon name="diagonal" /></router-link
+            ><router-link
+              :to="{ path: '/', hash: '#services' }"
+              class="text-action"
+              >Explore our services <UiIcon name="arrow"
+            /></router-link>
+          </div>
+          <div class="hero-note">
+            <span class="tiny-avatars"
+              ><img
+                src="/assets/frank.jpeg"
+                alt=""
+                width="34"
+                height="34"
+              /><img
+                src="/assets/chemuu.jpeg"
+                alt=""
+                width="34"
+                height="34"
+              /><span>✳</span></span
+            ><span
+              >Human ideas. Thoughtful code.<br /><b
+                >Your dedicated digital team.</b
+              ></span
+            >
           </div>
         </div>
+        <BuildPreview />
+      </section>
+      <div class="capability-strip">
+        <div class="site-container">
+          <span>FROM THE FIRST IDEA<br /><b>TO THE NEXT BIG THING</b></span
+          ><span><UiIcon name="web" /> Digital experiences</span
+          ><span><UiIcon name="payment" /> Connected payments</span
+          ><span><UiIcon name="learn" /> Practical learning</span
+          ><span class="strip-signoff"
+            >Built with purpose. <UiIcon name="spark"
+          /></span>
+        </div>
       </div>
-    </section>
-
-    <!-- Services Bento-Grid -->
-    <section id="services" class="py-20 bg-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900"
-        >
-          Our Services
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section
+        id="services"
+        class="services-section section-space site-container"
+      >
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">01 / WHAT WE DO</span>
+            <h2>
+              Everything you need.<br /><span class="muted-heading"
+                >One creative tech partner.</span
+              >
+            </h2>
+          </div>
+          <p>
+            From your first website to your next big platform.<br />We bring the
+            right skills to move you forward.
+          </p>
+        </div>
+        <div class="services-grid">
           <ServiceCard
             v-for="service in services"
             :key="service.id"
             :service="service"
           />
         </div>
-      </div>
-    </section>
-
-    <!-- M-Pesa Expert Ribbon -->
-    <section class="py-12 bg-gradient-to-r from-teal to-teal-dark text-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-          <h3 class="text-2xl md:text-3xl font-bold mb-4">
-            Need to automate your payments?
-          </h3>
-          <p class="text-lg md:text-xl mb-6">
-            We specialize in Safaricom Daraja API integrations.
+      </section>
+      <section class="payment-feature site-container">
+        <div class="payment-feature-inner">
+          <div class="payment-feature-copy">
+            <span class="eyebrow">BUILT FOR THE WAY KENYA PAYS</span>
+            <h2>Great business.<br />Seamless payments.</h2>
+            <p>
+              Bring M-Pesa into your website or app. We connect your business
+              with Safaricom’s Daraja API, so you can focus on what comes next.
+            </p>
+            <router-link
+              to="/services/m-pesa-integration"
+              class="action action-light"
+              >Explore M-Pesa integration <UiIcon name="diagonal"
+            /></router-link>
+          </div>
+          <div
+            class="payment-flow"
+            aria-label="Payment integration: customer, M-Pesa, your business"
+          >
+            <div class="flow-top">
+              <span>YOUR CUSTOMER</span><UiIcon name="phone" />
+            </div>
+            <div class="flow-connector">↓</div>
+            <div class="flow-center">
+              <span class="status-dot"></span><b>M-PESA</b
+              ><span>Daraja API</span><UiIcon name="check" />
+            </div>
+            <div class="flow-connector">↓</div>
+            <div class="flow-bottom">
+              <UiIcon name="web" /><span
+                >Your business,<br /><b>all connected.</b></span
+              ><UiIcon name="spark" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="learning"
+        class="learning-section section-space site-container"
+      >
+        <div class="learning-art" aria-label="Programming course illustration">
+          <div class="lesson-window">
+            <div class="lesson-top">
+              <span class="window-dots"><i></i><i></i><i></i></span
+              ><span>hello_future.py</span><span>Python</span>
+            </div>
+            <div class="lesson-code">
+              <span>01 <i># Every builder starts somewhere.</i></span
+              ><span>02 </span><span>03 <b>def</b> build_your_future():</span
+              ><span>04 &nbsp;&nbsp;skills = <em>"Learn by doing"</em></span
+              ><span>05 &nbsp;&nbsp;<b>return</b> possibilities</span
+              ><span>06 </span
+              ><span>07 <b>print</b>(<em>"Hello, future!"</em>)</span>
+            </div>
+            <div class="lesson-output">
+              <span>OUTPUT</span>
+              <p>Hello, future! <span class="cursor-mark">▍</span></p>
+            </div>
+          </div>
+          <div class="language-pills">
+            <span>Python</span><span>JavaScript</span><span>SQL</span
+            ><span>Scratch</span>
+          </div>
+          <span class="learning-sticker"
+            ><UiIcon name="code" /> MADE FOR<br />THE CURIOUS.</span
+          >
+        </div>
+        <div class="learning-copy">
+          <span class="eyebrow">02 / LEARN WITH US</span>
+          <h2>
+            Don’t just use tech.<br /><span class="muted-heading"
+              >Learn to create it.</span
+            >
+          </h2>
+          <p>
+            Start with curiosity. Leave with something you built. Our
+            programming classes combine practical projects with mentorship from
+            people who do this every day.
           </p>
-          <router-link
-            to="/services/m-pesa-integration"
-            class="btn-primary bg-white text-teal hover:bg-peach hover:text-white inline-block mr-4"
-          >
-            Learn More
-          </router-link>
-          
-           <a :href="whatsappUrl('I%27m_interested_in_M-Pesa_API_integration')"
-            target="_blank"
-            class="btn-outline border-white text-white hover:bg-white hover:text-teal inline-block"
-          >
-            Consult on WhatsApp
-          </a>
+          <ul>
+            <li><UiIcon name="check" /> Beginner-friendly, hands-on lessons</li>
+            <li><UiIcon name="check" /> Real projects for your portfolio</li>
+            <li><UiIcon name="check" /> Guidance from working developers</li>
+          </ul>
+          <router-link to="/programming-classes" class="action action-dark"
+            >Find your first class <UiIcon name="diagonal"
+          /></router-link>
         </div>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <TeamSection />
-
-    <!-- Our Process Section -->
-    <section id="process" class="py-20 bg-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900"
-        ></h2>
-        <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12"
-        >
-          <div class="text-center">
-            <div
-              class="bg-teal text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4"
-            >
-              1
+      </section>
+      <section id="process" class="process-section section-space">
+        <div class="site-container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">03 / HOW WE WORK</span>
+              <h2>A clear path.<br />From “what if” to what’s next.</h2>
             </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900">
-              Consultation
-            </h3>
-            <p class="text-gray-600">
-              We understand your needs and goals through a detailed
-              consultation.
-            </p>
+            <router-link to="/our-process" class="text-action"
+              >Get to know our process <UiIcon name="diagonal"
+            /></router-link>
           </div>
-          <div class="text-center">
-            <div
-              class="bg-teal text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4"
-            >
-              2
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900">
-              Development
-            </h3>
-            <p class="text-gray-600">
-              We build your solution with best practices and modern
-              technologies.
-            </p>
-          </div>
-          <div class="text-center">
-            <div
-              class="bg-teal text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4"
-            >
-              3
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-gray-900">
-              Launch & Support
-            </h3>
-            <p class="text-gray-600">
-              We launch your project and provide ongoing support for growth.
-            </p>
+          <div class="process-grid">
+            <article v-for="step in steps" :key="step.number">
+              <div class="step-top">
+                <span>{{ step.number }}</span
+                ><UiIcon :name="step.icon" />
+              </div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+            </article>
           </div>
         </div>
-        <div class="text-center">
-          <router-link to="/our-process" class="btn-secondary">
-            Learn More About Our Process
-          </router-link>
+      </section>
+      <TeamSection />
+      <section class="closing-section site-container">
+        <div class="closing-card">
+          <span class="eyebrow">LET’S MAKE YOUR NEXT MOVE A GOOD ONE</span>
+          <h2>
+            You bring the idea.<br />We’ll bring the <span>possibilities.</span>
+          </h2>
+          <div>
+            <a
+              :href="
+                whatsappUrl(
+                  'Hello, I have an idea I would like to build with 404HubSpot.',
+                )
+              "
+              target="_blank"
+              rel="noopener noreferrer"
+              class="action action-dark"
+              >Start a conversation <UiIcon name="diagonal" /></a
+            ><a :href="`mailto:${contact.email}`" class="closing-email"
+              >{{ contact.email }} <UiIcon name="arrow"
+            /></a>
+          </div>
+          <span class="closing-art" aria-hidden="true">✳</span>
         </div>
-      </div>
-    </section>
-
+      </section>
+    </main>
     <Footer />
   </div>
 </template>
-
 <script>
 import GlobalNav from "../components/GlobalNav.vue";
 import Footer from "../components/Footer.vue";
 import ServiceCard from "../components/ServiceCard.vue";
+import BuildPreview from "../components/BuildPreview.vue";
+import UiIcon from "../components/UiIcon.vue";
 import TeamSection from "./services/Teamsection.vue";
-
+import { services, contact, whatsappUrl } from "../data/site";
 export default {
   name: "Home",
   components: {
     GlobalNav,
     Footer,
     ServiceCard,
+    BuildPreview,
+    UiIcon,
     TeamSection,
   },
   data() {
     return {
-      whatsappNumber: "254708345963",
-      services: [
+      services,
+      contact,
+      steps: [
         {
-          id: 1,
-          title: "Web Development",
+          number: "01",
+          icon: "spark",
+          title: "First, we listen.",
           description:
-            "High-performance web applications built with modern frameworks.",
-          whatsappText: "I%27m_interested_in_Web_Development",
-          route: "/services/web-development",
+            "We get to know your business, your goals, and the problem you want to solve. Good work starts with good questions.",
         },
         {
-          id: 2,
-          title: "Software Development",
+          number: "02",
+          icon: "code",
+          title: "Then, we build.",
           description:
-            "Custom software solutions tailored to your business needs.",
-          whatsappText: "I%27m_interested_in_Software_Development",
-          route: "/services/software-development",
+            "We turn the plan into thoughtful design and dependable code, keeping you involved along the way.",
         },
         {
-          id: 3,
-          title: "Mobile Apps",
+          number: "03",
+          icon: "diagonal",
+          title: "Together, we grow.",
           description:
-            "Native and cross-platform mobile applications for iOS and Android.",
-          whatsappText: "I%27m_interested_in_Mobile_App_Development",
-          route: "/services/mobile-apps",
-        },
-        {
-          id: 4,
-          title: "M-Pesa Integration",
-          description:
-            "Seamless Safaricom Daraja API integrations for payment automation.",
-          whatsappText: "I%27m_interested_in_M-Pesa_Integration",
-          route: "/services/m-pesa-integration",
-        },
-        {
-          id: 5,
-          title: "Graphics Design",
-          description:
-            "Professional branding, logos, and visual design services.",
-          whatsappText: "I%27m_interested_in_Graphics_Design",
-          route: "/services/graphics-design",
-        },
-        {
-          id: 6,
-          title: "Programming Classes",
-          description:
-            "Learn Python, JavaScript, SQL, and more with expert mentorship.",
-          whatsappText: "I%27d_like_to_join_Programming_Classes",
-          route: "/programming-classes",
+            "We launch, help you get comfortable, and support your next steps. The finish line is just the beginning.",
         },
       ],
     };
   },
-  methods: {
-    whatsappUrl(text) {
-      return `https://wa.me/${this.whatsappNumber}?text=${text}`;
-    },
-  },
+  methods: { whatsappUrl },
 };
 </script>

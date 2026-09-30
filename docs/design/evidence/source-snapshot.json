@@ -1,0 +1,32 @@
+{
+  "baseRevision": "16f9a7a72351f2b4226b200aed1b6587f820586e",
+  "sourceFingerprint": "af24480e670ea51a1e10a6437c8439ae9a34a76ace61179ac1edd08b0e67d19a",
+  "files": {
+    "src/App.vue": "59d9b615e6d82cddd1d4cfe893cf1b5a2cf1b0902cba60386119538509ac845e",
+    "src/main.js": "772eb6da440cbcea407f13b8318cd1003410f9b6eb439c54004ca8cff135aa7f",
+    "src/style.css": "1d5294f7b4014af90a0c46ae5e5ec2c2f4c7d2cf1bcfdf0c57a8dfcb6772c21f",
+    "src/components/Footer.vue": "e992fc4459ebe74d6de985b1ee55557ba7181d638e156759573552f929125302",
+    "src/components/GlobalNav.vue": "65d8a7e1759a0458c08241c24b197ed156f556af0879653bfa6694449573b1ce",
+    "src/components/LanguageCard.vue": "c84d0e1711a3f6d85016f79d78f67237cb4bdfbd3bd7f8df8d337396017dc505",
+    "src/components/ServiceCard.vue": "aac9f4c4d4f81fb5da7f7d4bde8045108cd5d8d1d553dfbfd2edcde148d67475",
+    "src/components/UiIcon.vue": "c970ff3f40a63a18ea3366d877364658fa56f9d27d19a539be036c1278ab30bb",
+    "src/components/BuildPreview.vue": "5378b5581f63e8ed986d133a407ef73d70c14ac709cbcea704e30f7e19d16a7b",
+    "src/router/index.js": "bf207166ff0c983029f8d1c20b81f2c16640760d6342a94b44119eb6a39e7618",
+    "src/views/Contact.vue": "f0b0c4c9361ef56c5d7048dce270aa652a6fca6a453ebcfa8b8b1c1e30f2879f",
+    "src/views/Home.vue": "0d242475fed3b7623c366567124c041c599ffbfe6a094bc418fbc4c87430da17",
+    "src/views/OurProcess.vue": "b918bb00f2e855ccbae5976df82286fda29faab3b3b66694630b77901a1c46f0",
+    "src/views/ProgrammingClasses.vue": "e559d37fb359bc0c4a1177f74cd9d29bb98913b91ccb4943fe314fa807975a1e",
+    "src/styles/landing.css": "2e8d5b330aeaceb9dd9236f1c98774283f7cd5540dd30506b038e5aa83ecb25b",
+    "src/data/site.js": "5e24b097d74afe791edf045603d6bc68899693fd5b64ba739ba499bd514106e1",
+    "src/views/services/GraphicsDesign.vue": "c6d4dfb7cbbc54b80a2b52eba4f717025b7258325f429b370cce4ae33ccf20f8",
+    "src/views/services/MPesaIntegration.vue": "ed2b5876f71c4b04361ebb684411260d3ec2098d06561edb6999c78727275078",
+    "src/views/services/MobileApps.vue": "8f37a6cdf9bc42da791ea9f5eafebb660528d99f9d9ad28d0551f4e60d67ddd4",
+    "src/views/services/SoftwareDevelopment.vue": "91197779f80eb7d88a12ff2f1246a1b5d1fc658bcda981e90001b129466cbfa6",
+    "src/views/services/Teamsection.vue": "1f628935b1b66720333a79ebc3cce4c315f634a38a309d5cd4ce325e74db2111",
+    "src/views/services/WebDevelopment.vue": "e40f094a26f6219394f1611a3f483cacf9d49cc5e112f609fe4f8e1e261d113b",
+    "index.html": "acdd7c719ee2db3c2cd8a969013bd60d30afe9487d7401f5ba46fdc5abe59d43",
+    "package.json": "3992594421e853ed4fa7a745c2d625c2314df490b9921ea602e45fd2244098ef",
+    "package-lock.json": "b7385cf9256bdcf99b271ed959334fc3c500c51fd73eff0e74c793132ee17481",
+    "scripts/verify-ui.cjs": "c23d78efccd8b0f9a358b6a6b2f24237e9df1630786bb4e736dd5e6d6b6dce62"
+  }
+}

@@ -1,44 +1,37 @@
 <template>
-  <div class="bg-teal-dark rounded-lg p-6 text-white hover:shadow-2xl transition-shadow duration-300">
-    <h3 class="text-xl font-bold mb-3">{{ service.title }}</h3>
-    <p class="text-gray-200 mb-4">{{ service.description }}</p>
-    <div class="flex flex-col sm:flex-row gap-2">
-      <router-link 
-        v-if="service.route"
-        :to="service.route"
-        class="inline-block bg-peach hover:bg-peach-dark text-white font-semibold py-2 px-4 rounded transition-colors duration-200 text-center"
-      >
-        Learn More
-      </router-link>
-      <a 
-        :href="whatsappUrl(service.whatsappText)"
-        target="_blank"
-        class="inline-block border-2 border-peach text-peach hover:bg-peach hover:text-white font-semibold py-2 px-4 rounded transition-colors duration-200 text-center"
-      >
-        Consult on WhatsApp
-      </a>
+  <article class="service-card" :class="`tone-${service.tone}`">
+    <div class="service-card-top">
+      <span class="service-icon"><UiIcon :name="service.icon" /></span
+      ><span class="card-index">/ {{ service.id }}</span>
     </div>
-  </div>
+    <h3>
+      <router-link :to="service.route"
+        >{{ service.title }}<UiIcon name="diagonal"
+      /></router-link>
+    </h3>
+    <p>{{ service.description }}</p>
+    <div class="service-card-bottom">
+      <div class="tag-list">
+        <span v-for="tag in service.tags" :key="tag">{{ tag }}</span>
+      </div>
+      <a
+        :href="whatsappUrl(`I'm interested in ${service.title}.`)"
+        :aria-label="`Discuss ${service.title} on WhatsApp`"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="card-consult"
+        ><UiIcon name="arrow"
+      /></a>
+    </div>
+  </article>
 </template>
-
 <script>
+import UiIcon from "./UiIcon.vue";
+import { whatsappUrl } from "../data/site";
 export default {
-  name: 'ServiceCard',
-  props: {
-    service: {
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      whatsappNumber: '254708345963' // Replace with your actual WhatsApp number
-    }
-  },
-  methods: {
-    whatsappUrl(text) {
-      return `https://wa.me/${this.whatsappNumber}?text=${text}`
-    }
-  }
-}
+  name: "ServiceCard",
+  components: { UiIcon },
+  props: { service: { type: Object, required: true } },
+  methods: { whatsappUrl },
+};
 </script>
