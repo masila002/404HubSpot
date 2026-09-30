@@ -16,6 +16,7 @@ const routes = [
   "/services/graphics-design",
   "/sign-in",
   "/sign-up",
+  "/team/don-artkins",
 ];
 (async () => {
   const browser = await chromium.launch({
@@ -116,6 +117,7 @@ const routes = [
     .getByRole("link", { name: "Our Process", exact: true })
     .click();
   await page.waitForURL("**/our-process");
+  await page.waitForTimeout(450); // App route transition: old menu fades out 250ms
   assert.equal(await page.locator("#primary-navigation").isVisible(), false);
   assert.notEqual(
     await page.evaluate(() => getComputedStyle(document.body).overflow),
@@ -148,7 +150,7 @@ const routes = [
   const result = {
     checkedAt: new Date().toISOString(),
     checks,
-    routeViewportChecks: 55,
+    routeViewportChecks: 60,
     runtimeErrors: errors,
     browser: await browser.version(),
     playwright: require(

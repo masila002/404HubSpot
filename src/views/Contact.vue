@@ -40,7 +40,7 @@
           <div class="panel-card" data-reveal>
             <span class="eyebrow">QUICK QUOTE FORM</span>
             <h2 style="margin: 10px 0 18px">Scope in 60 seconds.</h2>
-            <div v-if="formSubmitted" class="panel-card" style="background:var(--site-mint);margin-bottom:16px"><b>Message ready!</b><p style="font-size:12px">Demo build — connect Formspree ID to send live.</p></div>
+            <div v-if="formSubmitted" class="panel-card" style="background:var(--site-mint);margin-bottom:16px"><b>Message sent!</b><p style="font-size:12px">We reply within 24 hours — a confirmation email follows once Brevo is connected.</p></div>
             <div v-if="formError" class="panel-card" style="background:#fdecec;margin-bottom:16px"><b>Check the form</b><p style="font-size:12px">{{ formError }}</p></div>
             <form @submit.prevent="submitForm" style="display:grid;gap:14px">
               <div class="form-row"><label for="name">Full name *</label><input id="name" v-model="form.name" required placeholder="June Chemuu" @blur="validateField('name')" /><p v-if="errors.name" style="color:#b3261e;font-size:12px">{{ errors.name }}</p></div>
@@ -68,6 +68,7 @@ import PageHero from '../components/PageHero.vue'
 import UiIcon from '../components/UiIcon.vue'
 import { ref } from 'vue'
 import { useReveal } from '../composables/useReveal'
+import { submitInquiry, toInquiryPayload, INQUIRY_ENDPOINT } from '../lib/brevo'
 
 export default {
   name: 'Contact',
@@ -86,7 +87,6 @@ export default {
     return {
       whatsappNumber: '254708345963', // Replace with your actual WhatsApp number
       googleMeetUrl: 'https://meet.google.com/your-meeting-link', // Replace with your Google Meet link
-      formspreeId: 'YOUR_FORM_ID', // Replace with your Formspree form ID
       submitting: false,
       formSubmitted: false,
       formError: '',
@@ -103,9 +103,6 @@ export default {
     }
   },
   computed: {
-    formspreeUrl() {
-      return `https://formspree.io/f/${this.formspreeId}`
-    },
     isFormValid() {
       return this.form.name && 
              this.form.email && 
@@ -182,65 +179,39 @@ export default {
       this.submitting = true
 
       try {
-        // Create form data
-        const formData = new FormData()
-        formData.append('name', this.form.name)
-        formData.append('email', this.form.email)
-        formData.append('phone', this.form.phone || 'Not provided')
-        formData.append('service', this.form.service)
-        formData.append('budget', this.form.budget || 'Not specified')
-        formData.append('timeline', this.form.timeline || 'Not specified')
-        formData.append('description', this.form.description)
-        formData.append('_subject', `New Contact Form: ${this.form.service}`)
-        formData.append('_replyto', this.form.email)
+        // Brevo path: first-party inquiry endpoint (docs/integrations/BREVO.md).
+        // Demo until the endpoint + BREVO_API_KEY exist server-side.
+        await submitInquiry(toInquiryPayload(this.form))
 
-        // Submit to Formspree
-        const response = await fetch(this.formspreeUrl, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-
-        if (response.ok) {
-          this.formSubmitted = true
-          this.form = {
-            name: '',
-            email: '',
-            phone: '',
-            service: '',
-            budget: '',
-            timeline: '',
-            description: ''
-          }
-          this.errors = {}
-          
-          // Scroll to top to show success message
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-          
-          // Reset success message after 10 seconds
-          setTimeout(() => {
-            this.formSubmitted = false
-          }, 10000)
-        } else {
-          const data = await response.json()
-          if (data.errors) {
-            this.formError = data.errors.map(err => err.message).join(', ')
-          } else {
-            this.formError = 'There was an error submitting your form. Please try again or contact us directly.'
-          }
+        this.formSubmitted = true
+        this.form = {
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          budget: '',
+          timeline: '',
+          description: ''
         }
+        this.errors = {}
+
+        // Scroll to top to show success message
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+
+        // Reset success message after 10 seconds
+        setTimeout(() => {
+          this.formSubmitted = false
+        }, 10000)
       } catch (error) {
         console.error('Form submission error:', error)
-        this.formError = 'Network error. Please check your connection and try again, or contact us directly via WhatsApp or email.'
+        this.formError = `Could not reach the inquiry endpoint (${INQUIRY_ENDPOINT}). The Brevo sender/key are not configured yet — please use WhatsApp or email for now.`
       } finally {
         this.submitting = false
       }
     }
   },
   mounted() {
-    // Check for success parameter in URL (from Formspree redirect)
+    // Check for success parameter in URL (legacy redirect support)
     const urlParams = new URLSearchParams(window.location.search)
     if (urlParams.get('success') === 'true') {
       this.formSubmitted = true

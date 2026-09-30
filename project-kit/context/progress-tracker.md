@@ -50,10 +50,10 @@ Per-file hashes: docs/design/evidence/source-snapshot.json; the feature commit c
 - Browser captures: docs/design/evidence/landing-{360,768,1024,1440,1920}.png.
 
 ### 3b. Feature 02b unified revamp (this branch, 2026-09-30)
-- `npm run build`: PASS; 99 modules; 0 errors. CSS 33.36 kB, JS ~601 kB (incl. gsap + lottie chunks). Warnings only: caniuse-lite age, module-type inference, lottie eval notice.
-- `verify-ui.cjs`: PASS, 67 grouped checks (55 route×viewport: 11 routes × 360/768/1024/1440/1920). Zero runtime errors; no overflow; skip links, menu/disclosure keyboard, anchors, reduced motion verified.
-- Playwright 1.63.0 + Chromium 130.0.6723.31 via PLAYWRIGHT_MODULE/CHROMIUM_PATH.
-- `git diff --check`: PASS.
+- `npm run build`: PASS; 101 modules; 0 errors. Warnings only: caniuse-lite age, lottie eval notice (module-type warning fixed via `"type": "module"`).
+- `verify-ui.cjs`: PASS, 72 grouped checks (60 route×viewport: 12 routes × 360/768/1024/1440/1920). Zero runtime errors; no overflow; skip links, menu/disclosure keyboard, anchors, reduced motion verified. Script waits 450ms post-navigation for the GSAP route transition.
+- Team detail fix: App.vue transition close-tag + TeamDetail import paths corrected after dev-server report; stale Vite processes killed so `:5173` is the tested server.
+- GitHub verify 2026-09-30 (api.github.com): DonArtkins 69 repos/63 followers; masila002 35/21; kiki-glow 46/10 + portfolio URL; Ericnjuki254 6/20; chemii933 10/14.
 - Pricing bands provisional (search integration down, no Context7) — owner confirmation gates quotes.
 
 ## 4. Contract synchronization and deviations
@@ -68,7 +68,7 @@ Official documentation fallback used because no Context7 MCP tool was available;
 
 ## 5. Open limits and next action
 
-02b review/merge: OPEN. Owner must confirm: Glory Kinya photo/bio/links; Frank “Fullstack Developer & Designer” and Don “AI Engineer & System Architect” titles; provisional KES bands; Clerk publishable key + Formspree/Meet IDs. Production deployment not run.
+02b review/merge: OPEN. Owner must confirm: Glory Kinya photo/bio/links; Frank “Fullstack Developer & Designer” and Don “AI Engineer & System Architect” titles; provisional KES bands; Clerk publishable key + Brevo sender/key/inbox + Meet ID. Production deployment not run.
 Existing Contact form/meeting placeholders remain (demo until IDs set); LanguageCard phone mismatch FIXED in 02b via shared whatsappUrl.
 External social destinations not live-verified; manual screen-reader/Firefox/WebKit checks not run.
 No backend, database, MCP, AI, retention, security or deployment tests are claimed as passing.

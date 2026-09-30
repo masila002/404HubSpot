@@ -227,7 +227,7 @@
               "
               target="_blank"
               rel="noopener noreferrer"
-              class="action action-dark"
+              class="action action-dark" data-magnetic
               >Start a conversation <UiIcon name="diagonal" /></a
             ><a :href="`mailto:${contact.email}`" class="closing-email"
               >{{ contact.email }} <UiIcon name="arrow"
@@ -249,7 +249,7 @@ import UiIcon from "../components/UiIcon.vue";
 import TeamSection from "./services/Teamsection.vue";
 import { services, contact, whatsappUrl } from "../data/site";
 import { ref } from "vue";
-import { useReveal } from "../composables/useReveal";
+import { useReveal, useMagnetic } from "../composables/useReveal";
 export default {
   name: "Home",
   components: {
@@ -263,6 +263,7 @@ export default {
   setup() {
     const root = ref(null);
     useReveal(root);
+    useMagnetic(root);
     return { root };
   },
   data() {

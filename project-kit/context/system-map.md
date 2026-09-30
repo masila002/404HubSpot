@@ -6,7 +6,7 @@ Views own page content and mount shared `GlobalNav` and `Footer` components.
 `Teamsection.vue` retains the team. `src/style.css` keeps legacy utility components;
 `src/styles/landing.css` owns the redesign's scoped styles and semantic tokens.
 Static brand/team assets remain in `public/assets/`. Inspiration stays outside public/.
-External boundaries: user-opened WhatsApp/mail/social links; Contact's existing Formspree POST.
+External boundaries: user-opened WhatsApp/mail/social links; Contact POSTs to first-party inquiry endpoint (Brevo server-side, 02b).
 No backend or stored user data is introduced.
 
 ## Target architecture

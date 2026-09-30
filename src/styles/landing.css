@@ -1762,3 +1762,28 @@
   .process-num { width: 44px; height: 44px; font-size: 18px; }
   .auth-card { padding: 24px; }
 }
+
+/* ---- Team detail + alive interactions (2026-09-30) ---- */
+.team-card-link { color: inherit; display: block; border-radius: 15px; }
+.team-card-link:hover .team-card { transform: translateY(-4px); box-shadow: 0 12px 32px #203b3614; }
+.team-card { transition: transform 180ms, box-shadow 180ms; }
+.team-more { display: inline-flex; align-items: center; min-height: 44px; font-size: 11px; font-weight: 600; color: var(--site-brand); margin-top: 6px; }
+.profile-hero { padding-block: 56px 40px; }
+.profile-back { margin-bottom: 22px; }
+.profile-back .flip { transform: rotate(180deg); }
+.profile-head { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: start; }
+.profile-portrait { height: 380px; border-radius: 18px; }
+.profile-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 12px; color: var(--site-muted); }
+.service-card { position: relative; overflow: hidden; }
+.service-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 40%, #ffffff55 50%, transparent 60%); transform: translateX(-120%); transition: transform 600ms ease; pointer-events: none; }
+.service-card:hover::after { transform: translateX(120%); }
+@media (max-width: 999px) {
+  .profile-head { grid-template-columns: 1fr; gap: 28px; }
+  .profile-portrait { height: 320px; max-width: 420px; }
+}
+@media (max-width: 650px) {
+  .profile-portrait { height: 260px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-card::after { display: none; }
+}

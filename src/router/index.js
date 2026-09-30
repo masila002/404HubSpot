@@ -10,6 +10,7 @@ import MPesaIntegration from '../views/services/MPesaIntegration.vue'
 import GraphicsDesign from '../views/services/GraphicsDesign.vue'
 import SignIn from '../views/auth/SignIn.vue'
 import SignUp from '../views/auth/SignUp.vue'
+import TeamDetail from '../views/TeamDetail.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -23,6 +24,7 @@ const routes = [
   { path: '/services/graphics-design', name: 'GraphicsDesign', component: GraphicsDesign },
   { path: '/sign-in', name: 'SignIn', component: SignIn },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
+  { path: '/team/:slug', name: 'TeamDetail', component: TeamDetail },
 ]
 
 const router = createRouter({

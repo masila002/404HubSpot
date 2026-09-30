@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New inquiry — {{params.service}}</title></head>
+<body style="margin:0;padding:0;background:#f8f9f5;font-family:Inter,system-ui,Arial,sans-serif;color:#203b36;">
+  <div style="max-width:600px;margin:0 auto;padding:32px 20px;">
+    <div style="background:#ffffff;border:1px solid #dfe5df;border-radius:20px;overflow:hidden;">
+      <div style="padding:28px 32px;border-bottom:1px solid #dfe5df;">
+        <img src="https://raw.githubusercontent.com/masila002/404HubSpot/main/public/assets/logo.png" alt="404HubSpot" width="44" height="44" style="border-radius:50%;vertical-align:middle;">
+        <span style="font-size:20px;font-weight:700;margin-left:10px;vertical-align:middle;">404<span style="font-weight:500;">HubSpot</span><span style="color:#246653;">.</span></span>
+      </div>
+      <div style="padding:32px;">
+        <p style="font-family:ui-monospace,Consolas,monospace;font-size:10px;letter-spacing:1.6px;color:#5d6c66;margin:0 0 12px;">NEW INQUIRY — {{params.service}}</p>
+        <h1 style="font-family:Georgia,serif;font-weight:500;font-size:26px;margin:0 0 16px;">{{params.name}} wants a quote.</h1>
+        <table style="width:100%;font-size:13px;line-height:1.7;border-collapse:collapse;">
+          <tr><td style="color:#5d6c66;width:130px;">Name</td><td><strong>{{params.name}}</strong></td></tr>
+          <tr><td style="color:#5d6c66;">Email</td><td><a href="mailto:{{params.email}}" style="color:#246653;">{{params.email}}</a></td></tr>
+          <tr><td style="color:#5d6c66;">Phone</td><td>{{params.phone}}</td></tr>
+          <tr><td style="color:#5d6c66;">Service</td><td>{{params.service}}</td></tr>
+          <tr><td style="color:#5d6c66;">Budget</td><td>{{params.budget}}</td></tr>
+          <tr><td style="color:#5d6c66;">Timeline</td><td>{{params.timeline}}</td></tr>
+        </table>
+        <div style="background:#f8f9f5;border:1px solid #dfe5df;border-radius:12px;padding:16px 20px;margin-top:20px;font-size:13px;line-height:1.8;">{{params.description}}</div>
+        <a href="mailto:{{params.email}}?subject=Re%3A%20Your%20404HubSpot%20inquiry" style="display:inline-block;margin-top:24px;background:#203b36;color:#f8faf4;text-decoration:none;font-size:13px;font-weight:600;padding:13px 22px;border-radius:8px;">Reply to {{params.name}} →</a>
+      </div>
+      <div style="padding:20px 32px;border-top:1px solid #dfe5df;font-size:11px;color:#5d6c66;">Good people. Thoughtful technology. · hubspot861@gmail.com · Sent via Brevo from 404HubSpot.</div>
+    </div>
+  </div>
+</body>
+</html>

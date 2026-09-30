@@ -12,6 +12,7 @@ All 9 original routes + `/sign-in` + `/sign-up` share the landing executive syst
 - Motion: `gsap@3.15.0`, `lottie-web@5.13.0` (npm 2026-09-30); `src/composables/useReveal.js` (gsap.context + ScrollTrigger + cleanup + reduced-motion); `LottiePlayer.vue`, `PageHero.vue`.
 - Auth: `@clerk/vue@2.5.7` (npm 2026-09-30); `main.js` registers clerkPlugin only when key exists; `/sign-in`, `/sign-up` landing-styled + demo shell; nav links to sign-in; `.env.example` documents key.
 - Pages: Home (+reveal), Web/Software/Mobile/M-Pesa/Graphics, ProgrammingClasses, OurProcess, Contact rewritten to landing classes; pricing from shared data.
+- Team detail: `/team/:slug` pages (GitHub-verified bios, stats, repos, contact); cards link to profiles; App.vue GSAP route transition; magnetic CTAs; card sheen hover.
 - Checks: `scripts/verify-ui.cjs` covers 11 routes × 5 widths (55) + 5 team cards.
 
 ## Pricing research (Kenya/Africa, anti-undercharge)
@@ -20,19 +21,24 @@ All 9 original routes + `/sign-in` + `/sign-up` share the landing executive syst
 - Do not publish as fixed quotes. 50/50 payment terms retained.
 
 ## Current docs consulted — 2026-09-30
-No Context7 MCP available; official fallback:
+No Context7 MCP available (`list_mcp_resources` → `[]`); official docs fallback (Context7 research: https://github.com/upstash/context7; Brevo: https://developers.brevo.com/docs/send-a-transactional-email; ../Griot scaffold has neither — verified 2026-09-30, see docs/integrations/):
 - GSAP 3.15 Installation (`npm install gsap`; `gsap.registerPlugin(ScrollTrigger)`): https://gsap.com/docs/v3/Installation/
 - Clerk Vue quickstart + `clerkPlugin` + `VITE_CLERK_PUBLISHABLE_KEY`: https://clerk.com/docs/vue/getting-started/quickstart (via fetch 2026-09-30)
 - Vue 3 lifecycle (`onMounted`/`onUnmounted` + cleanup): https://vuejs.org/guide/essentials/lifecycle.html
 - Vue Router scroll behavior: https://router.vuejs.org/guide/advanced/scroll-behavior.html
 - Installed: `gsap@3.15.0`, `lottie-web@5.13.0`, `@clerk/vue@2.5.7` via `npm view` 2026-09-30.
 
-## Acceptance
+## Email deviation (owner-ordered 2026-09-30): Formspree REMOVED
+Contact form POSTs to first-party `VITE_INQUIRY_ENDPOINT` (`src/lib/brevo.js`);
+server sends Brevo transactional mail per docs/integrations/BREVO.md.
+Templates `emails/inquiry-{internal,autoreply}.html` match HubSpot branding;
+logo hotlinked from GitHub raw. Browser never holds `BREVO_API_KEY`.
+ Gates: sender domain, key, inbox, endpoint (spec 19).
 - [ ] All 11 routes render with header/footer; zero overflow 360/768/1024/1440/1920.
 - [ ] 6 service cards home; 5 team cards; pricing visible per service; WhatsApp/mailto intact.
 - [ ] Reduced motion disables reveals/Lottie; focus outlines intact; no fake metrics.
 - [ ] `npm run build`, `git diff --check`, `verify-ui.cjs` pass; tracker updated before push.
-- [ ] Owner confirms: Glory bio/links/photo, Frank/Don titles, final KES bands, Clerk key + Google Meet/Formspree IDs.
+- [ ] Owner confirms: Glory bio/links/photo, Frank/Don titles, final KES bands, Clerk key + Brevo sender/key/inbox + Google Meet ID.
 
 ## Open gates
 Visual review; merge; Clerk production key; content/asset truth (02); deployment not run.

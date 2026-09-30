@@ -2,6 +2,7 @@
   "name": "404hubspot",
   "version": "1.0.0",
   "description": "404HubSpot - Expert Digital Solutions & Tech Training",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

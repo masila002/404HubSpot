@@ -57,3 +57,33 @@ export function useReveal(rootRef, options = {}) {
 }
 
 export { gsap, ScrollTrigger };
+
+// Magnetic hover for [data-magnetic]: subtle GSAP pull toward cursor.
+// Desktop pointers only, reduced-motion safe, cleaned up on unmount.
+export function useMagnetic(rootRef, strength = 6) {
+  let ctx = null;
+  onMounted(() => {
+    if (
+      !rootRef.value ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(pointer: coarse)").matches
+    )
+      return;
+    ctx = gsap.context(() => {
+      gsap.utils.toArray("[data-magnetic]").forEach((el) => {
+        const xTo = gsap.quickTo(el, "x", { duration: 0.3, ease: "power3" });
+        const yTo = gsap.quickTo(el, "y", { duration: 0.3, ease: "power3" });
+        el.addEventListener("mousemove", (e) => {
+          const r = el.getBoundingClientRect();
+          xTo(((e.clientX - r.left) / r.width - 0.5) * strength * 2);
+          yTo(((e.clientY - r.top) / r.height - 0.5) * strength * 2);
+        });
+        el.addEventListener("mouseleave", () => {
+          xTo(0);
+          yTo(0);
+        });
+      });
+    }, rootRef.value);
+  });
+  onUnmounted(() => ctx?.revert());
+}
