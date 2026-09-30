@@ -20,7 +20,7 @@ flowchart LR
   Visitor --> Static[Vue SPA on static hosting]
   Static --> WA[WhatsApp link]
   Static --> Email[Mail link]
-  Static --> Form[Existing Formspree placeholder]
+  Static --> Form[First-party inquiry endpoint + Brevo templates (02b)]
 ```
 
 No application backend, accounts, CMS, database, AI, or MCP server currently exists.

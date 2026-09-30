@@ -1,6 +1,8 @@
 # 404HubSpot — company portfolio design system
 
-Version 1 · 2026-09-30 · Implemented candidate, visual review pending.
+Version 2 · 2026-09-30 · Unified site revamp (02b, review pending).
+V1 landing direction retained and extended to all routes: Fraunces display + Inter body,
+GSAP reveals + Lottie accents, Clerk auth shell, five-person team, provisional KES bands.
 The user delegated reference selection and redesign. This document records our project-specific
 choices; copied Griot approval statements have no authority here.
 

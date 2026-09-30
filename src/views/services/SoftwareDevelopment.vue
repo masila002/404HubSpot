@@ -1,122 +1,104 @@
 <template>
-  <div class="min-h-screen">
+  <div class="page-shell landing-page" ref="root">
     <GlobalNav />
-    
-    <section class="bg-gradient-to-br from-gray-50 to-teal-50 py-20">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Software Development Services
-          </h1>
-          <p class="text-xl text-gray-700">
-            Custom software solutions tailored to your business needs
-          </p>
-        </div>
-      </div>
-    </section>
+    <main id="main-content" tabindex="-1">
+      <PageHero
+        kicker="SOFTWARE — CUSTOM SYSTEMS & AUTOMATION"
+        title="Tools that remove <em>busywork.</em>"
+        lede="Custom software around your process — specs, sprints and clean handover."
+      >
+        <template #actions>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I need custom software.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Start on WhatsApp <UiIcon name="diagonal" /></a>
+          <router-link to="/contact" class="text-action">Get a scoped quote <UiIcon name="arrow" /></router-link>
+        </template>
+        <template #art>
+          <div class="hero-art">
+            <div class="preview-grid"></div>
+            <span class="preview-coordinate">SPEC → SPRINT → SHIP</span>
+            <LottiePlayer :animation-data="orbit" label="Orbit illustration" style="position:absolute;top:24px;right:24px;width:150px" />
+            <div class="browser-preview" style="top:90px">
+              <div class="browser-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>your-site.co.ke</span><span>↗</span></div>
+              <div class="mock-site-content"><span class="mini-label">BUILT FOR WHAT'S NEXT</span><strong>Fast. Clear.<br /><em>Made to convert.</em></strong><span class="mock-button">Let's build ↗</span></div>
+              <div class="mock-site-footer"><span>RESPONSIVE BY DEFAULT</span><span>01 / 03</span></div>
+            </div>
+            <span class="preview-caption">360 → 1920PX READY</span>
+          </div>
+        </template>
+      </PageHero>
 
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Our Software Development Process</h2>
-        <div class="max-w-4xl mx-auto">
-          <div class="space-y-8">
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">1</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Requirements Analysis</h3>
-                <p class="text-gray-600">We conduct in-depth interviews and workshops to understand your business processes, pain points, and objectives. We document all requirements and create a detailed specification.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">2</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Architecture & Design</h3>
-                <p class="text-gray-600">Our architects design a scalable, secure, and maintainable system architecture. We create technical specifications and database designs.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">3</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Agile Development</h3>
-                <p class="text-gray-600">We develop in sprints with regular demos and feedback sessions. You're involved throughout the process, ensuring the solution meets your expectations.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">4</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Testing & Deployment</h3>
-                <p class="text-gray-600">Comprehensive testing including unit tests, integration tests, and user acceptance testing. We deploy to your preferred environment with full documentation.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">5</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Maintenance & Support</h3>
-                <p class="text-gray-600">Ongoing support, bug fixes, and feature enhancements. We provide training and documentation to ensure your team can effectively use the software.</p>
-              </div>
-            </div>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">01 / HOW WE BUILD</span><h2>Discovery to launch.<br /><span class="muted-heading">No surprises.</span></h2></div>
+          <p>Same executive rhythm as home — five clear steps, weekly demos, clean handover.</p>
+        </div>
+        <div class="process-timeline">
+          <div v-for="(s, i) in steps" :key="s.title" class="process-row" data-reveal>
+            <span class="process-num">{{ i + 1 }}</span>
+            <div><h3>{{ s.title }}</h3><p style="color:var(--site-muted);font-size:13px;line-height:1.8;margin-top:8px">{{ s.body }}</p></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="py-20 bg-gray-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Software Development Pricing</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Small Business Solution</h3>
-            <div class="mb-6">
-              <span class="text-4xl font-bold text-teal">KES 200,000</span>
-              <span class="text-gray-600"> - 500,000</span>
-            </div>
-            <ul class="space-y-3 mb-8 text-gray-600">
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Basic features & modules</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Up to 3 months development</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>User training included</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>3 months support</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_Small_Business_Software')" target="_blank" class="btn-outline w-full text-center block">Get Started</a>
-          </div>
-
-          <div class="bg-teal-dark rounded-lg shadow-lg p-8 text-white transform scale-105">
-            <div class="bg-peach text-white text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">ENTERPRISE</div>
-            <h3 class="text-2xl font-bold mb-4">Enterprise Solution</h3>
-            <div class="mb-6">
-              <span class="text-4xl font-bold">KES 500,000</span>
-              <span class="text-gray-300">+</span>
-            </div>
-            <ul class="space-y-3 mb-8 text-gray-200">
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Custom features & integrations</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Scalable architecture</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Advanced security features</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Dedicated project manager</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Ongoing maintenance & support</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_Enterprise_Software')" target="_blank" class="btn-primary bg-peach hover:bg-peach-dark w-full text-center block">Get Started</a>
-          </div>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">02 / KENYA-REALISTIC PRICING</span><h2>Fair prices.<br /><span class="muted-heading">No undercharging.</span></h2></div>
+          <p>Owner-review bands (2026-09-30). Final quote confirms scope on WhatsApp — 50% to start, 50% on delivery.</p>
         </div>
-      </div>
-    </section>
+        <div class="pricing-grid">
+          <article v-for="p in pricing.software" :key="p.name" class="price-card" :class="{ featured: p.featured }" data-reveal>
+            <span v-if="p.badge" class="badge-pop">{{ p.badge }}</span>
+            <h3>{{ p.name }}</h3>
+            <div class="price-amount">{{ p.range }}</div>
+            <p style="font-size:12px;opacity:.8">{{ p.blurb }}</p>
+            <ul><li v-for="f in p.features" :key="f"><UiIcon name="check" /> {{ f }}</li></ul>
+            <a :href="whatsappUrl(`Hello 404HubSpot, ${p.cta}.`)" target="_blank" rel="noopener noreferrer" :class="['action', p.featured ? 'action-light' : 'action-dark']" style="margin-top:auto">Get started <UiIcon name="diagonal" /></a>
+          </article>
+        </div>
+      </section>
 
+      <section class="closing-section site-container" data-reveal>
+        <div class="closing-card">
+          <span class="eyebrow">READY WHEN YOU ARE</span>
+          <h2>Let's scope your softwaredevelopment <span>this week.</span></h2>
+          <div>
+            <a :href="whatsappUrl(`Hello 404HubSpot, I'd like a SoftwareDevelopment quote.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Chat on WhatsApp <UiIcon name="diagonal" /></a>
+            <router-link to="/our-process" class="text-action">See our process <UiIcon name="arrow" /></router-link>
+          </div>
+          <span class="closing-art" aria-hidden="true">✳</span>
+        </div>
+      </section>
+    </main>
     <Footer />
   </div>
 </template>
-
 <script>
-import GlobalNav from '../../components/GlobalNav.vue'
-import Footer from '../../components/Footer.vue'
+import { ref } from "vue";
+import GlobalNav from "../../components/GlobalNav.vue";
+import Footer from "../../components/Footer.vue";
+import PageHero from "../../components/PageHero.vue";
+import LottiePlayer from "../../components/LottiePlayer.vue";
+import UiIcon from "../../components/UiIcon.vue";
+import { pricing, whatsappUrl } from "../../data/site";
+import { useReveal } from "../../composables/useReveal";
+import orbit from "../../../public/lottie/orbit.json";
 
 export default {
-  name: 'SoftwareDevelopment',
-  components: { GlobalNav, Footer },
-  data() {
-    return { whatsappNumber: '254708345963' }
+  name: "SoftwareDevelopment",
+  components: { GlobalNav, Footer, PageHero, LottiePlayer, UiIcon },
+  setup() {
+    const root = ref(null);
+    useReveal(root);
+    return {
+      root, pricing, orbit,
+      steps: [
+        { title: "Requirements Analysis", body: "Interviews, workshops and a written spec — no building on guesses." },
+{ title: "Architecture & Design", body: "Scalable, secure structure with data model and roles." },
+{ title: "Agile Development", body: "Sprints, demos and your feedback in the loop." },
+{ title: "Testing & Deployment", body: "Unit, integration and UAT before go-live with docs." },
+{ title: "Maintenance & Support", body: "Training, bug-fix window and enhancement plans." },
+      ],
+    };
   },
-  methods: {
-    whatsappUrl(text) {
-      return `https://wa.me/${this.whatsappNumber}?text=${text}`
-    }
-  }
-}
+  methods: { whatsappUrl },
+};
 </script>

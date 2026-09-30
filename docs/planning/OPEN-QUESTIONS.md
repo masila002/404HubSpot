@@ -7,7 +7,7 @@ Feature 01 can complete without these. Future specs remain planned/blocked where
 | Approved company claims, case studies, screenshots and client publication permission? | 02, 10, 11 |
 | Confirm business phone/email, team portraits/profile URLs, social URLs and primary domain? | 02, 08, 12, 14 |
 | Class formats, schedules, availability and approved fees? | 07 |
-| Use existing Formspree or first-party inquiry backend; actual form/meeting configuration? | 08 interim, 19 migration |
+| Brevo sender domain verified? API key stored server-side? Team inbox (INQUIRY_TO_EMAIL)? Formspree dropped per owner order (02b). | 19 live; sender/key gate sends |
 | Hosting provider, region, monthly budget and operational owner? | 16 production, 17–18, 30 |
 | Staff identities and who may edit, publish, view inquiries and administer access? | 20–25 |
 | Initial approved MCP clients and whether remote or local-only access is needed first? | 24 |

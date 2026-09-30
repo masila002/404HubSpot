@@ -1,125 +1,104 @@
 <template>
-  <div class="min-h-screen">
+  <div class="page-shell landing-page" ref="root">
     <GlobalNav />
-    
-    <section class="bg-gradient-to-br from-gray-50 to-teal-50 py-20">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Mobile App Development</h1>
-          <p class="text-xl text-gray-700">Native and cross-platform mobile applications for iOS and Android</p>
-        </div>
-      </div>
-    </section>
+    <main id="main-content" tabindex="-1">
+      <PageHero
+        kicker="MOBILE — IOS & ANDROID"
+        title="Your business, <em>in their pocket.</em>"
+        lede="Native or cross-platform apps — designed for thumbs, built for stores."
+      >
+        <template #actions>
+          <a :href="whatsappUrl(`Hello 404HubSpot, I need a mobile app.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Start on WhatsApp <UiIcon name="diagonal" /></a>
+          <router-link to="/contact" class="text-action">Get a scoped quote <UiIcon name="arrow" /></router-link>
+        </template>
+        <template #art>
+          <div class="hero-art">
+            <div class="preview-grid"></div>
+            <span class="preview-coordinate">TAP → BUILD → LAUNCH</span>
+            <LottiePlayer :animation-data="orbit" label="Orbit illustration" style="position:absolute;top:24px;right:24px;width:150px" />
+            <div class="browser-preview" style="top:90px">
+              <div class="browser-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>your-site.co.ke</span><span>↗</span></div>
+              <div class="mock-site-content"><span class="mini-label">BUILT FOR WHAT'S NEXT</span><strong>Fast. Clear.<br /><em>Made to convert.</em></strong><span class="mock-button">Let's build ↗</span></div>
+              <div class="mock-site-footer"><span>RESPONSIVE BY DEFAULT</span><span>01 / 03</span></div>
+            </div>
+            <span class="preview-caption">360 → 1920PX READY</span>
+          </div>
+        </template>
+      </PageHero>
 
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Our Mobile App Development Process</h2>
-        <div class="max-w-4xl mx-auto">
-          <div class="space-y-8">
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">1</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Concept & Strategy</h3>
-                <p class="text-gray-600">We analyze your app idea, target audience, and market competition. We create a detailed app strategy and feature roadmap.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">2</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">UI/UX Design</h3>
-                <p class="text-gray-600">Our designers create intuitive, user-friendly interfaces. We design wireframes, prototypes, and high-fidelity mockups for both iOS and Android.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">3</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Development</h3>
-                <p class="text-gray-600">We develop your app using native (Swift/Kotlin) or cross-platform (React Native/Flutter) technologies based on your requirements.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">4</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">Testing & QA</h3>
-                <p class="text-gray-600">Rigorous testing on multiple devices and OS versions. We test functionality, performance, security, and user experience.</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-teal text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">5</div>
-              <div>
-                <h3 class="text-2xl font-semibold mb-2 text-gray-900">App Store Deployment</h3>
-                <p class="text-gray-600">We handle the entire submission process to Apple App Store and Google Play Store, including store optimization and compliance.</p>
-              </div>
-            </div>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">01 / HOW WE BUILD</span><h2>Discovery to launch.<br /><span class="muted-heading">No surprises.</span></h2></div>
+          <p>Same executive rhythm as home — five clear steps, weekly demos, clean handover.</p>
+        </div>
+        <div class="process-timeline">
+          <div v-for="(s, i) in steps" :key="s.title" class="process-row" data-reveal>
+            <span class="process-num">{{ i + 1 }}</span>
+            <div><h3>{{ s.title }}</h3><p style="color:var(--site-muted);font-size:13px;line-height:1.8;margin-top:8px">{{ s.body }}</p></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="py-20 bg-gray-50">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Mobile App Pricing</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Basic App</h3>
-            <div class="mb-6"><span class="text-4xl font-bold text-teal">KES 300,000</span><span class="text-gray-600"> - 500,000</span></div>
-            <ul class="space-y-3 mb-8 text-gray-600">
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Simple UI/UX</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Basic features</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Single platform (iOS or Android)</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>App store submission</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_a_Basic_Mobile_App')" target="_blank" class="btn-outline w-full text-center block">Get Started</a>
-          </div>
-
-          <div class="bg-teal-dark rounded-lg shadow-lg p-8 text-white transform scale-105">
-            <div class="bg-peach text-white text-xs font-semibold px-3 py-1 rounded-full inline-block mb-4">POPULAR</div>
-            <h3 class="text-2xl font-bold mb-4">Cross-Platform App</h3>
-            <div class="mb-6"><span class="text-4xl font-bold">KES 500,000</span><span class="text-gray-300"> - 800,000</span></div>
-            <ul class="space-y-3 mb-8 text-gray-200">
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>iOS & Android</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Advanced UI/UX</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Backend integration</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Payment integration (M-Pesa)</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-peach mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Push notifications</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_a_Cross-Platform_Mobile_App')" target="_blank" class="btn-primary bg-peach hover:bg-peach-dark w-full text-center block">Get Started</a>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900">Enterprise App</h3>
-            <div class="mb-6"><span class="text-4xl font-bold text-teal">KES 800,000</span><span class="text-gray-600">+</span></div>
-            <ul class="space-y-3 mb-8 text-gray-600">
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Custom features</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Complex integrations</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Admin dashboard</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Advanced security</li>
-              <li class="flex items-start"><svg class="w-5 h-5 text-teal mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Ongoing maintenance</li>
-            </ul>
-            <a :href="whatsappUrl('I%27m_interested_in_an_Enterprise_Mobile_App')" target="_blank" class="btn-outline w-full text-center block">Get Started</a>
-          </div>
+      <section class="section-space site-container" data-reveal>
+        <div class="section-heading">
+          <div><span class="eyebrow">02 / KENYA-REALISTIC PRICING</span><h2>Fair prices.<br /><span class="muted-heading">No undercharging.</span></h2></div>
+          <p>Owner-review bands (2026-09-30). Final quote confirms scope on WhatsApp — 50% to start, 50% on delivery.</p>
         </div>
-      </div>
-    </section>
+        <div class="pricing-grid">
+          <article v-for="p in pricing.mobile" :key="p.name" class="price-card" :class="{ featured: p.featured }" data-reveal>
+            <span v-if="p.badge" class="badge-pop">{{ p.badge }}</span>
+            <h3>{{ p.name }}</h3>
+            <div class="price-amount">{{ p.range }}</div>
+            <p style="font-size:12px;opacity:.8">{{ p.blurb }}</p>
+            <ul><li v-for="f in p.features" :key="f"><UiIcon name="check" /> {{ f }}</li></ul>
+            <a :href="whatsappUrl(`Hello 404HubSpot, ${p.cta}.`)" target="_blank" rel="noopener noreferrer" :class="['action', p.featured ? 'action-light' : 'action-dark']" style="margin-top:auto">Get started <UiIcon name="diagonal" /></a>
+          </article>
+        </div>
+      </section>
 
+      <section class="closing-section site-container" data-reveal>
+        <div class="closing-card">
+          <span class="eyebrow">READY WHEN YOU ARE</span>
+          <h2>Let's scope your mobileapps <span>this week.</span></h2>
+          <div>
+            <a :href="whatsappUrl(`Hello 404HubSpot, I'd like a MobileApps quote.`)" target="_blank" rel="noopener noreferrer" class="action action-dark">Chat on WhatsApp <UiIcon name="diagonal" /></a>
+            <router-link to="/our-process" class="text-action">See our process <UiIcon name="arrow" /></router-link>
+          </div>
+          <span class="closing-art" aria-hidden="true">✳</span>
+        </div>
+      </section>
+    </main>
     <Footer />
   </div>
 </template>
-
 <script>
-import GlobalNav from '../../components/GlobalNav.vue'
-import Footer from '../../components/Footer.vue'
+import { ref } from "vue";
+import GlobalNav from "../../components/GlobalNav.vue";
+import Footer from "../../components/Footer.vue";
+import PageHero from "../../components/PageHero.vue";
+import LottiePlayer from "../../components/LottiePlayer.vue";
+import UiIcon from "../../components/UiIcon.vue";
+import { pricing, whatsappUrl } from "../../data/site";
+import { useReveal } from "../../composables/useReveal";
+import orbit from "../../../public/lottie/orbit.json";
 
 export default {
-  name: 'MobileApps',
-  components: { GlobalNav, Footer },
-  data() {
-    return { whatsappNumber: '254708345963' }
+  name: "MobileApps",
+  components: { GlobalNav, Footer, PageHero, LottiePlayer, UiIcon },
+  setup() {
+    const root = ref(null);
+    useReveal(root);
+    return {
+      root, pricing, orbit,
+      steps: [
+        { title: "Concept & Strategy", body: "Audience, features and roadmap — what to cut, what to keep." },
+{ title: "UI/UX Design", body: "Wireframes to high-fidelity flows for both platforms." },
+{ title: "Development", body: "Swift/Kotlin or Flutter/RN with backend and M-Pesa." },
+{ title: "Testing & QA", body: "Devices, OS versions, performance and security." },
+{ title: "Store Deployment", body: " listings, review handling and release notes." },
+      ],
+    };
   },
-  methods: {
-    whatsappUrl(text) {
-      return `https://wa.me/${this.whatsappNumber}?text=${text}`
-    }
-  }
-}
+  methods: { whatsappUrl },
+};
 </script>
