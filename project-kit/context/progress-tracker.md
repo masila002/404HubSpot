@@ -6,13 +6,47 @@ Current: 01 merged to `main` (`cb5d263`); 02b unified revamp IN PROGRESS on `fea
 Next eligible after user review/merge: 02 content truth confirmation (prices/team/keys), then remaining staged specs one-by-one.
 One spec/branch/PR normally; 02b is a documented single exception — do not batch further without approval.
 
-## 1. Status board
+## 1. Status board — every feature, one by one, no batching
 
-| ID | Feature | State | Evidence | Operator gates |
+| ID | Feature | State | Evidence | Open gates |
 |---|---|---|---|---|
-| 01 | Landing/shared shell redesign + workflow/architecture planning | READY FOR REVIEW | 57 browser checks; build; 193 links; 23 reference hashes | Visual review OPEN; merge OPEN; deployment NOT RUN |
-| 02–33 | Remaining portfolio and staged full-stack features | PLANNED | Detailed specs and dependency graph | Per-spec content/provider/identity/budget gates OPEN |
-| 02b | Unified site revamp (all pages + motion + Clerk shell + pricing) | IN PROGRESS | Branch `feature/web/02-unified-site-revamp`; spec 02-unified-site-revamp.md | Visual review OPEN; owner price/team/key confirmation OPEN |
+| 01 | Landing/shared shell redesign + workflow/architecture planning | MERGED | main `cb5d263`; 57 checks green at merge | Done |
+| 02b | Unified site revamp (owner-approved bundle exception) | IN REVIEW | Branch `feature/web/02-unified-site-revamp`; 75 checks green | Visual review OPEN; owner price/team/key/domain confirmation OPEN |
+| 02 | Content, brand and asset truth | PLANNED | Depends 01 | Copy/assets/provider gates OPEN |
+| 03 | Web development service redesign | PLANNED | Depends 01,02 | — |
+| 04 | Software development service redesign | PLANNED | Depends 02,03 | — |
+| 05 | Mobile app development service redesign | PLANNED | Depends 02,03 | — |
+| 06 | M-Pesa integration service redesign | PLANNED | Depends 02,03 | — |
+| 07 | Programming classes and learning paths | PLANNED | Depends 01,02 | Class format/fee gate OPEN |
+| 08 | Contact and inquiry experience | PLANNED | Depends 01,02 | Form/meeting config gate OPEN |
+| 09 | Delivery process and collaboration page | PLANNED | Depends 01,02 | — |
+| 10 | Portfolio discovery and filtering | PLANNED | Depends 01,02 | Claims/permission gate OPEN |
+| 11 | Evidence-backed case study pages | PLANNED | Depends 10 | Claims/permission gate OPEN |
+| 12 | Company story and team profiles | PLANNED | Depends 01,02 | Portrait/profile gate OPEN |
+| 13 | Sitewide accessibility and navigation completion | PLANNED | Depends 03,04,05,06,07,08,09,10,11,12,33 | — |
+| 14 | Search metadata, structured data and sharing | PLANNED | Depends 02,10,11,12 | Domain gate OPEN |
+| 15 | Performance budgets and media delivery | PLANNED | Depends 03,04,05,06,07,08,09,10,11,12,14,33 | — |
+| 16 | Reproducible checks and branch previews | PLANNED | Depends 01 | Hosting/budget/owner gate OPEN |
+| 17 | Backend API foundation and contracts | PLANNED | Depends 02,16 | Hosting gate OPEN |
+| 18 | Relational data foundation and migrations | PLANNED | Depends 17 | — |
+| 19 | Durable inquiry capture and notifications | PLANNED | Depends 08,17,18 | Brevo sender/key/inbox gate OPEN |
+| 20 | Staff identity and authorization | PLANNED | Depends 17,18 | Identity gate OPEN |
+| 21 | Staff inquiry workspace | PLANNED | Depends 19,20 | — |
+| 22 | Content editing and controlled publishing | PLANNED | Depends 10,11,12,18,20 | — |
+| 23 | Managed portfolio media | PLANNED | Depends 18,20,22 | — |
+| 24 | Private MCP read tools and resources | PLANNED | Depends 17,20,21,22 | Client/transport gate OPEN |
+| 25 | MCP proposed writes with explicit approval | PLANNED | Depends 24 | — |
+| 26 | Published knowledge retrieval for AI | PLANNED | Depends 22 | Provider/budget/data gate OPEN |
+| 27 | Staff inquiry drafting assistant | PLANNED | Depends 21,26 | — |
+| 28 | Optional public FAQ assistant pilot | PLANNED | Depends 13,26,27 | Demand gate OPEN |
+| 29 | Inquiry retention, export and deletion operations | PLANNED | Depends 19,20,21 | Privacy/consent gate OPEN |
+| 30 | Full-stack deployment, backups and recovery | PLANNED | Depends 17,18,19,20,29 | — |
+| 31 | Operational visibility and AI/MCP cost controls | PLANNED | Depends 19,24,27,30 | — |
+| 32 | Scaling and extraction decision review | PLANNED | Depends 15,30,31 | May conclude no new runtime needed |
+| 33 | Graphics design service redesign | PLANNED | Depends 02,03 | — |
+| 34 | Customer accounts & password auth (Clerk) | PLANNED | Depends 17,18,20 | App linked at build; secret-key gate OPEN |
+
+Rule: implement strictly in dependency order, one spec per branch. 02b is the single documented exception.
 
 ## 2. Delivered scope
 
