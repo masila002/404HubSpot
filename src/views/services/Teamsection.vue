@@ -45,7 +45,6 @@
               <h3>{{ member.name }}</h3>
               <span>{{ member.role }}</span>
               <p>{{ member.focus }}</p>
-              <span class="team-more">View profile <span aria-hidden="true">→</span></span>
             </div>
           </article>
         </router-link>

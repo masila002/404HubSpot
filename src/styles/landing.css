@@ -1081,16 +1081,6 @@
   color: var(--site-brand);
   text-decoration: underline;
 }
-.team-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  margin-top: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--site-brand);
-}
 .closing-section {
   padding-bottom: 88px;
 }
@@ -1792,11 +1782,7 @@
 .team-card-link { color: inherit; display: block; border-radius: 15px; }
 .team-card-link:hover .team-card { transform: translateY(-4px); box-shadow: 0 12px 32px #203b3614; }
 .team-card { transition: transform 180ms, box-shadow 180ms; }
-.team-card-link:hover .team-more {
-  background: var(--site-brand);
-  border-color: var(--site-brand);
-  transform: translateY(-1px);
-}
+.team-card-link:focus-visible { outline: 3px solid var(--site-focus); outline-offset: 5px; }
 .profile-hero { padding-block: 56px 40px; }
 .profile-back { margin-bottom: 22px; }
 .profile-back .flip { transform: rotate(180deg); }
